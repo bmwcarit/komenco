@@ -53,8 +53,10 @@ class ConfiguredApplication extends Application {
 
 	protected $basedir;
 
-	public function __construct() {
+	public function __construct($debug = false) {
 		parent::__construct();
+
+		$this['debug'] = $debug;
 
 		$this->toRoot = '/../..';
 		$this->basedir = __DIR__ . $this->toRoot;

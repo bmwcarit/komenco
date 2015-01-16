@@ -26,9 +26,7 @@ $loader = require_once __DIR__ . '/vendor/autoload.php';
 use komenco\ConfiguredApplication;
 use komenco\ui\HelloWorldProvider;
 
-$app = new ConfiguredApplication();
-
-$app['debug'] = true;
+$app = new ConfiguredApplication(true);
 
 $app->log('=========================================');
 $app->log('Starting APP');
