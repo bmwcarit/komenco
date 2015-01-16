@@ -34,8 +34,5 @@
 			"database\\": "src-gen/",
 			"config\\": "src-gen/"
 		}
-	},
-	"config": {
-		"component-dir": "vendor-components"
 	}
 }
