@@ -1,0 +1,76 @@
+{#
+ Copyright (C) 2015, BMW Car IT GmbH
+
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+#}
+
+{% extends "bootstrap_3_horizontal_layout.html.twig" %}
+
+{% block submit_widget -%}
+	{% set attr = attr|merge({class: (attr.class|default('btn-primary'))|trim}) %}
+	{{- parent() -}}
+{%- endblock %}
+
+{% block checkbox_widget -%}
+	{% set parent_label_class = parent_label_class|default('') %}
+	{% if 'checkbox-inline' in parent_label_class %}
+		{{ form_label(form, null, { widget: parent() }) }}
+	{% else %}
+		<input type="checkbox" {{ block('widget_attributes') }}
+				{% if value is defined %}
+					value="{{ value }}"
+				{% endif %}
+				{% if checked %}
+					checked="checked"
+				{% endif %}/>
+	{% endif %}
+	<script type="text/javascript">$("[name='{{ full_name }}']").bootstrapSwitch();</script>
+{%- endblock checkbox_widget %}
+
+{% block checkbox_radio_row -%}
+{% spaceless %}
+	<div class="form-group{% if not valid %} has-error{% endif %}">
+		{{ form_label(form) }}
+		<div class="{{ block('form_group_class') }}">
+			{{ form_widget(form) }}
+			{{ form_errors(form) }}
+		</div>
+	</div>
+{%- endspaceless %}
+{%- endblock checkbox_radio_row %}
+
+{% block checkbox_radio_label %}
+{% spaceless %}
+	{% set label_attr = label_attr|merge({'for': id}) %}
+	{% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ block('form_label_class'))|trim}) %}
+	{% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' control-label')|trim}) %}
+	{% if required %}
+		{% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' required')|trim}) %}
+	{% endif %}
+	{% if parent_label_class is defined %}
+		{% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ parent_label_class)|trim}) %}
+	{% endif %}
+	{% if label is empty %}
+		{% set label = name|humanize %}
+	{% endif %}
+	<label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+		{{ label|trans({}, translation_domain) }}
+	</label>
+{%- endspaceless %}
+{%- endblock checkbox_radio_label %}

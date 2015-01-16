@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="starterkit" defaultIdMethod="native"
+	namespace="database" tablePrefix="sk_">
+	<table name="users" phpName="User">
+		<column name="id" type="integer" required="true"
+			primaryKey="true" autoIncrement="true"/>
+		<column name="key" type="varchar" size="128" required="true" />
+		<column name="openid" type="varchar" size="512" required="true" />
+		<column name="firstname" type="varchar" size="128"/>
+		<column name="lastname" type="varchar" size="128"/>
+		<column name="email" type="varchar" size="256"/>
+		<column name="active" type="boolean" defaultValue="FALSE"/>
+		<unique name="uq_user_key">
+			<unique-column name="key"/>
+		</unique>
+		<unique name="uq_user_openid">
+			<unique-column name="openid"/>
+		</unique>
+	</table>
+
+	<table name="groups" phpName="Group">
+		<column name="id" type="integer" required="true"
+			primaryKey="true" autoIncrement="true"/>
+		<column name="name" type="varchar" size="128" required="true"/>
+		<unique name="uq_group_name">
+			<unique-column name="name"/>
+		</unique>
+	</table>
+
+	<table name="user_groups" isCrossRef="true">
+		<column name="user_id" type="integer" primaryKey="true"/>
+		<column name="group_id" type="integer" primaryKey="true"/>
+		<foreign-key foreignTable="users" onDelete="CASCADE">
+			<reference local="user_id" foreign="id"/>
+		</foreign-key>
+		<foreign-key foreignTable="groups" onDelete="CASCADE">
+			<reference local="group_id" foreign="id"/>
+		</foreign-key>
+	</table>
+</database>

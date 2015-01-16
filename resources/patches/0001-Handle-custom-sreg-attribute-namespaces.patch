@@ -1,0 +1,45 @@
+From a1afb5f6f8a1c5f5cc9c1790164450e59e183c67 Mon Sep 17 00:00:00 2001
+From: Timo Mueller <timo.mueller@bmw-carit.de>
+Date: Thu, 2 Oct 2014 16:49:34 +0200
+Subject: [PATCH] Handle custom sreg attribute namespaces
+
+---
+ Vendor/lightopenid/openid.php | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/Vendor/lightopenid/openid.php b/Vendor/lightopenid/openid.php
+index 1556887..55cabb6 100644
+--- a/Vendor/lightopenid/openid.php
++++ b/Vendor/lightopenid/openid.php
+@@ -794,8 +794,18 @@ class LightOpenID
+     {
+         $attributes = array();
+         $sreg_to_ax = array_flip(self::$ax_to_sreg);
++
++        $ns = 'sreg';
++        foreach ($this->data as $key => $val) {
++            if (substr($key, 0, strlen('openid_ns_')) == 'openid_ns_'
++                && $val == 'http://openid.net/extensions/sreg/1.1') {
++                $ns = substr($key, strlen('openid_ns_'));
++                break;
++            }
++        }
++
+         foreach (explode(',', $this->data['openid_signed']) as $key) {
+-            $keyMatch = 'sreg.';
++            $keyMatch = $ns . '.';
+             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {
+                 continue;
+             }
+@@ -804,7 +814,7 @@ class LightOpenID
+                 # The field name isn't part of the SREG spec, so we ignore it.
+                 continue;
+             }
+-            $attributes[$sreg_to_ax[$key]] = $this->data['openid_sreg_' . $key];
++            $attributes[$sreg_to_ax[$key]] = $this->data['openid_' . $ns . '_' . $key];
+         }
+         return $attributes;
+     }
+-- 
+1.9.3
+

@@ -1,0 +1,26 @@
+## YAML Template.
+---
+propel:
+  paths:
+      schemaDir: resources/db/schema
+      phpDir: src-gen
+      phpConfDir: src-gen/config
+      sqlDir: resources/db/sql-gen
+  database:
+      connections:
+          starterkit:
+              adapter: sqlite
+              classname: Propel\Runtime\Connection\ConnectionWrapper
+              dsn: "sqlite:resources/db/starterkit.sq3"
+              user: dbuser
+              password: dbuser
+              attributes:
+  runtime:
+      defaultConnection: starterkit
+      connections:
+          - starterkit
+  generator:
+      defaultConnection: starterkit
+      connections:
+          - starterkit
+      tablePrefix: sk_

@@ -1,0 +1,9 @@
+composer.lock
+*.log
+propel
+web/
+src-gen/
+vendor/
+vendor-components/
+resources/db/sql-gen/
+*.sq3

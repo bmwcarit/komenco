@@ -1,0 +1,60 @@
+{#
+ Copyright (C) 2015, BMW Car IT GmbH
+
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+#}
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed"
+						type="button"
+						data-toggle="collapse"
+						data-target=".bs-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{ path('home') }}">
+					{% image '@logo' name='logo.png' %}
+						<img class="img-responsive"
+							src="{{ app.request.basepath }}/web/{{ asset_url }}"
+							width="44px"/>
+					{% endimage %}
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse"/>
+				{{ knp_menu_render('main', {'currentClass': 'active'}) }}
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<p class="navbar-text navbar-right">
+							<a id="logout"
+								href="{{ path('logout') }}"
+								class="navbar-link">
+								{{ user().firstname }} (logout)
+							</a>
+						</p>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+{
+	"name": "komenco",
+	"description": "komenco",
+	"keywords": ["komenco", "beginning"],
+	"license": "proprietary",
+	"minimum-stability": "dev",
+	"require": {
+		"silex/silex": ">=1.2",
+		"mheap/Silex-Assetic": "*",
+		"twig/twig": ">=1.8,<2.0-dev",
+		"symfony/security": "~2.3,<2.7",
+		"symfony/validator": "~2.3,<2.7",
+		"symfony/form": "~2.3,<2.7",
+		"symfony/config": "~2.3,<2.7",
+		"symfony/translation": "~2.3,<2.7",
+		"symfony/locale": "~2.3,<2.7",
+		"symfony/twig-bridge": "~2.3,<2.7",
+		"icehero/silex-opauth": "dev-master",
+		"opauth/openid": "dev-master",
+		"monolog/monolog": ">=1.0.0",
+		"guzzlehttp/guzzle": "~4.0",
+		"propel/propel": "~2.0@dev",
+		"propel/propel-service-provider": "2.x",
+		"twbs/bootstrap": "~3.2",
+		"bootstrap-select/bootstrap-select": "dev-master",
+		"nostalgiaz/bootstrap-switch": "dev-master",
+		"components/jquery": "~2.1",
+		"knplabs/knp-menu": "~2.0",
+		"oyejorge/less.php": "dev-master"
+	},
+	"autoload": {
+		"psr-0": {
+			"komenco\\": "src/",
+			"database\\": "src-gen/",
+			"config\\": "src-gen/"
+		}
+	},
+	"config": {
+		"component-dir": "vendor-components"
+	}
+}
