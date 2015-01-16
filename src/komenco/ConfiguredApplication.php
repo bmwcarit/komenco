@@ -123,7 +123,7 @@ class ConfiguredApplication extends Application {
 				$am->set('scripts', new AssetCache(
 					new AssetCollection(array(
 						new FileAsset($this->basedir .
-								'/vendor-components/jquery/jquery.js'
+								'/vendor/components/jquery/jquery.js'
 						),
 						new FileAsset($this->basedir .
 								'/vendor/twbs/bootstrap/dist/js/bootstrap.js'
