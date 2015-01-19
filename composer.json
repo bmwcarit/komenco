@@ -26,7 +26,8 @@
 		"nostalgiaz/bootstrap-switch": "dev-master",
 		"components/jquery": "~2.1",
 		"knplabs/knp-menu": "~2.0",
-		"oyejorge/less.php": "dev-master"
+		"oyejorge/less.php": "dev-master",
+		"igorw/config-service-provider": "1.2.2"
 	},
 	"autoload": {
 		"psr-0": {

@@ -44,6 +44,7 @@ use komenco\auth\CrowdIDUserProvider;
 use komenco\provider\CrowdRestProvider;
 use komenco\provider\MenuProvider;
 use komenco\ui\AboutProvider;
+use Igorw\Silex\ConfigServiceProvider;
 
 class ConfiguredApplication extends Application {
 	use Application\TwigTrait;
@@ -54,23 +55,24 @@ class ConfiguredApplication extends Application {
 
 	protected $basedir;
 
-	public function __construct($debug = false) {
+	public function __construct() {
 		parent::__construct();
-
-		$this['debug'] = $debug;
 
 		$this->toRoot = '/../..';
 		$this->basedir = __DIR__ . $this->toRoot;
 
+		$this->loadConfiguration();
+		$this['debug'] = $this['config']['debug'];
+
 		$this->register(new TranslationServiceProvider(), array(
-			'locale_fallbacks' => array('en'),
+			'locale_fallbacks' => array($this['config']['locale']),
 		));
 
 		$this->register(new UrlGeneratorServiceProvider());
 		$this->register(new CrowdRestProvider());
 
 		$this->register(new MonologServiceProvider(), array(
-			'monolog.logfile' => $this->basedir . '/development.log',
+			'monolog.logfile' => $this->basedir . '/' . $this['config']['logfile'],
 		));
 
 		$this->register(new PropelServiceProvider(), array(
@@ -85,6 +87,16 @@ class ConfiguredApplication extends Application {
 		$this->register(new MenuProvider());
 
 		$this->mount('/about', new AboutProvider());
+	}
+
+	private function loadConfiguration() {
+		$this->register(new ConfigServiceProvider(__DIR__ . '/DefaultConfig.php', array(), null, 'config'));
+
+		# load custom configuration from json
+		if(getenv('APP_ENVIRONMENT')) {
+			$env = getenv('APP_ENVIRONMENT');
+			$this->register(new ConfigServiceProvider($this->basedir . "/config/$env.json", array(), null, 'config'));
+		}
 	}
 
 	private function registerAssetic() {
@@ -139,10 +151,10 @@ class ConfiguredApplication extends Application {
 				));
 				$am->get('scripts')->setTargetPath('js/script.js');
 
-				$am->set('logo', new FileAsset($this->basedir . '/resources/images/logo.png'));
+				$am->set('logo', new FileAsset($this->basedir . '/' . $this['config']['logo']));
 				$am->get('logo')->setTargetPath('images/logo.png');
 
-				$am->set('companylogo', new FileAsset($this->basedir . '/resources/images/companylogo.png'));
+				$am->set('companylogo', new FileAsset($this->basedir . '/' . $this['config']['companylogo']));
 				$am->get('companylogo')->setTargetPath('images/companylogo.png');
 
 				return $am;
@@ -169,7 +181,7 @@ class ConfiguredApplication extends Application {
 			function($twig, $app) {
 				$twig->addGlobal('login_url', '/login/openid');
 				$twig->addGlobal('app_conf', array(
-					'name' => 'komenco',
+					'name' => $this['config']['name'],
 					'logo' => 'logo.png'
 				));
 

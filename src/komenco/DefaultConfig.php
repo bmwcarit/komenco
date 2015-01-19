@@ -21,26 +21,11 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-$loader = require_once __DIR__ . '/vendor/autoload.php';
-
-use komenco\ConfiguredApplication;
-use komenco\ui\HelloWorldProvider;
-
-$app = new ConfiguredApplication();
-
-$app->log('=========================================');
-$app->log('Starting APP');
-
-$app->boot();
-
-$app->get('/login', function() use ($app) {
-	return $app->render('login.twig');
-});
-
-$app->get('/', function() use ($app) {
-	return $app->render('home.twig');
-})->bind('home');
-
-$app->mount('/hello', new HelloWorldProvider());
-
-$app->run();
+return array(
+	'name' => 'komenco',
+	'debug' => true,
+	'logfile' => 'komenco.log',
+	'locale' => "en",
+	'logo' => 'resources/images/logo.png',
+	'companylogo' => 'resources/images/companylogo.png'
+);
