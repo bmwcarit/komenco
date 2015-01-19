@@ -88,7 +88,7 @@ class ConfiguredApplication extends Application {
 		$app = $this;
 
 		$app->register(new AsseticServiceProvider());
-		$app['assetic.path_to_web'] = __DIR__;
+		$app['assetic.path_to_web'] = $this->basedir . '/web';
 		$app['assetic.options'] = array(
 			'formulae_cache_dir' => $this->basedir . '/web/assetic/cache',
 			'debug' => $app['debug'],
@@ -118,7 +118,7 @@ class ConfiguredApplication extends Application {
 					new FilesystemCache(
 							$app['assetic.options']['formulae_cache_dir'])
 				));
-				$am->get('styles')->setTargetPath($this->toRoot . '/web/css/styles.css');
+				$am->get('styles')->setTargetPath('css/styles.css');
 
 				$am->set('scripts', new AssetCache(
 					new AssetCollection(array(
@@ -134,13 +134,13 @@ class ConfiguredApplication extends Application {
 					)),
 					new FilesystemCache($app['assetic.options']['formulae_cache_dir'])
 				));
-				$am->get('scripts')->setTargetPath($this->toRoot . '/web/js/script.js');
+				$am->get('scripts')->setTargetPath('js/script.js');
 
 				$am->set('logo', new FileAsset($this->basedir . '/resources/images/logo.png'));
-				$am->get('logo')->setTargetPath($this->toRoot . '/web/images/logo.png');
+				$am->get('logo')->setTargetPath('images/logo.png');
 
 				$am->set('companylogo', new FileAsset($this->basedir . '/resources/images/companylogo.png'));
-				$am->get('companylogo')->setTargetPath($this->toRoot . '/web/images/companylogo.png');
+				$am->get('companylogo')->setTargetPath('images/companylogo.png');
 
 				return $am;
 			})
