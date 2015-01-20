@@ -25,14 +25,13 @@
 	</head>
 	<body>
 		<h1>Redirecting to Car IT OpenID</h1>
-		
+
 		<form id="auth" method="post">
 			<input type="hidden"
 					id="openid_url"
 					name="openid_url"
-					value="https://crowd.bmw-carit.de:8443/openidserver/op">
+					value="<?php print ($GLOBALS['openid_server_url'])?>">
 		</form>
-
 		<script>
 			window.onload = function(){
 				var form = document.getElementById('auth');

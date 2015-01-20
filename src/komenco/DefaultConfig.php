@@ -27,5 +27,6 @@ return array(
 	'logfile' => 'komenco.log',
 	'locale' => "en",
 	'logo' => 'resources/images/logo.png',
-	'companylogo' => 'resources/images/companylogo.png'
+	'companylogo' => 'resources/images/companylogo.png',
+	'openid_server_url' => 'https://localhost/simpleid/www'
 );

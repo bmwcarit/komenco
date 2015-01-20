@@ -97,6 +97,9 @@ class ConfiguredApplication extends Application {
 			$env = getenv('APP_ENVIRONMENT');
 			$this->register(new ConfigServiceProvider($this->basedir . "/config/$env.json", array(), null, 'config'));
 		}
+
+		# save openid server url in global variables
+		$GLOBALS['openid_server_url'] = $this['config']['openid_server_url'];
 	}
 
 	private function registerAssetic() {
@@ -228,7 +231,7 @@ class ConfiguredApplication extends Application {
 						'callback_url' => 'opauth',
 						'Strategy' => [
 							'OpenID' => array(
-								'identifier_form' => 'openid_login.html'
+								'identifier_form' => 'openid_login.php'
 							)
 						]
 					]
