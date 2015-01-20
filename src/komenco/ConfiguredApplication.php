@@ -179,7 +179,7 @@ class ConfiguredApplication extends Application {
 
 		$this['twig'] = $this->share($this->extend('twig',
 			function($twig, $app) {
-				$twig->addGlobal('login_url', '/login/openid');
+				$twig->addGlobal('login_url', 'login/openid');
 				$twig->addGlobal('app_conf', array(
 					'name' => $this['config']['name'],
 					'logo' => 'logo.png'
@@ -225,6 +225,7 @@ class ConfiguredApplication extends Application {
 				'opauth' => array(
 					'opauth' => [
 						'security_salt' => 'thisisnotneededforopenid',
+						'callback_url' => 'opauth',
 						'Strategy' => [
 							'OpenID' => array(
 								'identifier_form' => 'openid_login.html'
