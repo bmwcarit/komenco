@@ -41,10 +41,6 @@ $app->get('/', function() use ($app) {
 	return $app->render('home.twig');
 })->bind('home');
 
-$app->get('/gfx/', function() use ($app) {
-	return $app->redirect($app->path('home'));
-})->bind('gfx');
-
 $app->mount('/hello', new HelloWorldProvider());
 
 $app->run();
