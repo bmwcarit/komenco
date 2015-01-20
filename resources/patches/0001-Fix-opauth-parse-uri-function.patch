@@ -1,0 +1,26 @@
+From 4b2848f66bf21ef106a0f77864c3c2b18c410ebf Mon Sep 17 00:00:00 2001
+From: Michael Knapp <michael.knapp@bmw-carit.de>
+Date: Tue, 20 Jan 2015 11:48:03 +0100
+Subject: [PATCH] Fix opauth parse uri function
+
+---
+ lib/Opauth/Opauth.php | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/lib/Opauth/Opauth.php b/lib/Opauth/Opauth.php
+index c75e036..083a2f8 100644
+--- a/lib/Opauth/Opauth.php
++++ b/lib/Opauth/Opauth.php
+@@ -129,7 +129,8 @@ class Opauth {
+ 	 * Parses Request URI
+ 	 */
+ 	private function parseUri() {
+-		$this->env['request'] = substr($this->env['request_uri'], strlen($this->env['path']) - 1);
++		$this->env['request'] = substr($this->env['request_uri'],
++			strpos($this->env['request_uri'], $this->env['path']) + strlen($this->env['path']) - 1);
+ 
+ 		if (preg_match_all('/\/([A-Za-z0-9-_]+)/', $this->env['request'], $matches)) {
+ 			foreach ($matches[1] as $match) {
+-- 
+2.1.0
+
