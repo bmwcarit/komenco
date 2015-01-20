@@ -1,0 +1,104 @@
+{#
+ Copyright (C) 2015, BMW Car IT GmbH
+
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+#}
+
+{% macro item(key, value) %}
+	<dt>{{ key }}:</dt>
+	<dd>
+		{{ value|default('') }}
+	</dd>
+{% endmacro %}
+
+{% macro item_raw(key, value) %}
+	<dt>{{ key }}:</dt>
+	<dd>
+		{{ value|default('')|raw }}
+	</dd>
+{% endmacro %}
+
+{% macro authors(authors) %}
+	{% if authors is defined %}
+		{% set value = [] %}
+		{% for author in authors %}
+			{% if author.homepage is defined %}
+				{% set value = value|merge({ (loop.index0): author.name
+											~ ' (' ~ author.homepage|href ~ ')'
+											}) %}
+			{% else %}
+				{% set value = value|merge({ (loop.index0): author.name }) %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	{{ _self.item_raw('Authors', value|join('<br>')) }}
+{% endmacro %}
+
+{% macro details(package) %}
+<dl class="dl-horizontal">
+	{{ _self.item('Name', package.name) }}
+	{{ _self.item('Version', package.version) }}
+	{{ _self.item('Description', package.description|default(null)) }}
+	{{ _self.item_raw('Homepage', package.homepage|default(null)|href) }}
+	{{ _self.item_raw('Source', package.source.url|default(null)|href) }}
+	{{ _self.authors(package.authors|default(null)) }}
+</dl>
+{% endmacro %}
+
+{% block licenses %}
+<div class="panel-group" id="accordion"
+	role="tablist" aria-multiselectable="true">
+	{% for package in packages %}
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="heading{{ loop.index }}">
+			<h4 class="panel-title">
+				<a data-toggle="collapse"
+					data-parent="#accordion"
+					href="#collapse{{ loop.index }}"
+					aria-expanded="false"
+					aria-controls="collapse{{ loop.index }}"
+					{% if not loop.first %}
+						class="collapsed"
+					{% endif %}
+					>
+					<div class="row">
+						<div class="col-md-8">
+							{{ package.name }} ({{ package.version }})
+						</div>
+						<div class="col-md-4">
+							<p class="text-right">
+								{{ package.license[0]|default("Unknown") }}
+							</p>
+						</div>
+					</div>
+			</a>
+			</h4>
+		</div>
+		<div id="collapse{{ loop.index }}"
+				class="panel-collapse collapse{% if loop.first %} in{% endif %}"
+				role="tabpanel"
+				aria-labelledby="heading{{ loop.index }}">
+			<div class="panel-body">
+				{{ _self.details(package) }}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock licenses %}
