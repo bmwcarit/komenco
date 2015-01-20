@@ -175,6 +175,16 @@ class ConfiguredApplication extends Application {
 					}
 				));
 
+				$twig->addFilter(new \Twig_SimpleFilter('href',
+					function($string) {
+						if (is_null($string)) {
+							return '';
+						}
+
+						return '<a href="' . $string . '">' . $string . '</a>';
+					}
+				));
+
 				return $twig;
 			}
 		));
