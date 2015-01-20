@@ -20,35 +20,22 @@
  DEALINGS IN THE SOFTWARE.
 #}
 
-<!DOCTYPE html>
-<html>
-	<head>
-		{% block head %}
-			<meta charset="utf-8">
-			<meta name="viewport"
-					content="width=device-width, initial-scale=1.0">
-
-			<title>{{ app_conf.name }} - {% block title %}{% endblock %}</title>
-
-			{% javascripts '@scripts' name='script' %}
-				<script type="text/javascript"charset="utf-8"
-						src="{{ app.request.basepath }}/web/{{ asset_url }}">
-				</script>
-			{% endjavascripts %}
-
-			{% stylesheets '@styles' name='styles' %}
-				 <link rel="stylesheet" href="{{ app.request.basepath }}/web/{{ asset_url }}" media="screen"/>
-			{% endstylesheets %}
-		{% endblock head %}
-	</head>
-	<body>
-		{% block container %}
-			{% include 'navigation.twig' %}
-			<div class="container">
-				<div id="alerts"></div>
-				{% block content %}{% endblock %}
+{% block footer %}
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					{% include 'company_footer.twig' %}
+				</div>
+				<div class="col-lg-4">
+					<p class="text-right">
+						Icons provided by
+						<a href="http://glyphicons.com/">
+							Glyphicons
+						</a>
+					</p>
+				</div>
 			</div>
-			{% include 'footer.twig' %}
-		{% endblock container %}
-	</body>
-</html>
+		</div>
+	</footer>
+{% endblock footer %}
