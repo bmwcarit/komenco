@@ -43,6 +43,7 @@ use Propel\Silex\PropelServiceProvider;
 use komenco\auth\CrowdIDUserProvider;
 use komenco\provider\CrowdRestProvider;
 use komenco\provider\MenuProvider;
+use komenco\ui\AboutProvider;
 
 class ConfiguredApplication extends Application {
 	use Application\TwigTrait;
@@ -82,6 +83,8 @@ class ConfiguredApplication extends Application {
 		$this->registerAssetic();
 		$this->register(new FormServiceProvider());
 		$this->register(new MenuProvider());
+
+		$this->mount('/about', new AboutProvider());
 	}
 
 	private function registerAssetic() {
@@ -169,6 +172,7 @@ class ConfiguredApplication extends Application {
 					'name' => 'komenco',
 					'logo' => 'logo.png'
 				));
+
 				$twig->addFunction(new \Twig_SimpleFunction('user', 
 					function() use ($app) {
 							return $app['security']->getToken()->getUser();
