@@ -27,106 +27,68 @@ use SilexOpauth\Security\OpauthUserProviderInterface;
 use SilexOpauth\Security\OpauthResult;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Symfony\Component\Security\Core\Exception\AuthenticationServiceException;
-use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
 use database\UserQuery;
 use database\GroupQuery;
 
-class CrowdIDUserProvider implements OpauthUserProviderInterface,
+class OpenIDUserProvider implements OpauthUserProviderInterface,
 									UserProviderInterface {
 	protected $app;
-	protected $crowd;
 
 	public function __construct(Application $app) {
 		$this->app = $app;
-		$this->crowd = $app['crowd'];
 	}
-	
+
 	public function loadUserByOpauthResult(OpauthResult $result) {
-		$this->app['monolog']->addDebug(__METHOD__);
-		$this->app['monolog']->addDebug($result->serialize());
-		
 		$username = $result->getNickname();
-		
+
 		$user = UserQuery::create()->filterByKey($username)
 									->findOneOrCreate();
 		if ($user->isNew()) {
 			$this->createUser($user,
 								$result->getProvider() . ':' .
-									$result->getUid(),
-								$result->getEmail());
+									$result->getUid() . ':' . $result->getNickname(),
+								$result->getEmail(),
+								$result->getName());
 		}
-		
+
 		return $this->loadUserByUsername($username);
 	}
 
-	private function createUser($user, $uid,  $email) {
-		$response = $this->crowd->get('user',
-										['query' => [
-											'username' => $user->getKey()
-										]]);
-		
-		if ($response->getStatusCode() == Response::HTTP_NOT_FOUND) {
-			throw new UsernameNotFoundException(
-									sprintf('Username "%s" does not exist.',
-												$user->getKey()));
-		} else if ($response->getStatusCode() == Response::HTTP_FORBIDDEN) {
-			$this->app['monolog']->addDebug('Crowd denied access, please ' .
-											'make sure the local server is ' .
-											'allowed the access the crowd ' .
-											'application ');
-			throw new AuthenticationServiceException('Access was denied' .
-														' by crowd');
-		}
-
-		$json = $response->json();
-
+	private function createUser($user, $uid, $email, $name) {
 		$user->setOpenid($uid);
-		$user->setFirstname($json['first-name']);
-		$user->setLastname($json['last-name']);
+		if(strpos($name, ' ')) {
+			$user->setFirstname(explode(' ', $name)[0]);
+			$user->setLastname(explode(' ', $name)[1]);
+		} else {
+			$user->setFirstname($name);
+			$user->setLastname(' ');
+		}
 		$user->setEmail($email);
-		
-		if($json['active'] == 'true')
-			$user->setActive(true);
-
+		$user->setActive(true);
 		$this->addGroups($user);
+
 		$user->save();
 	}
-	
+
 	private function addGroups($user) {
-		$response = $this->crowd->get('group/user/nested',
-							['query' => [
-								'groupname' => 'crowd-administrators',
-								'username' => $user->getKey()
-							]]);
-		
-		if ($response->getStatusCode() == Response::HTTP_OK) {
-			$user->addGroup($this->getGroup('ROLE_USER'));
-			$user->addGroup($this->getGroup('ROLE_ADMIN'));
-		}
+		$user->addGroup($this->getGroup('ROLE_USER'));
 	}
-	
+
 	private function getGroup($groupname) {
 		return GroupQuery::create()->filterByName($groupname)
 									->findOneOrCreate();
 	}
 
 	public function loadUserByUsername($username) {
-		$this->app['monolog']->addDebug(__METHOD__);
-
-		return new CrowdIDUser($username);
+		return new OpenIDUser($username);
 	}
 
 	public function refreshUser(UserInterface $user) {
-		$this->app['monolog']->addDebug(__METHOD__);
-
 		return $this->loadUserByUsername($user->getUsername());
 	}
 
 	public function supportsClass($class) {
-		$this->app['monolog']->addDebug(__METHOD__);
-		return $class === 'komenco\auth\CrowdIDUser';
+		return $class === 'komenco\auth\OpenIDUser';
 	}
 }

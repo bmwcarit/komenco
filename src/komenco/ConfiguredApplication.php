@@ -40,7 +40,7 @@ use Assetic\Cache\FilesystemCache;
 use Assetic\Filter\LessphpFilter;
 use SilexOpauth\Security\OpauthSilexProvider;
 use Propel\Silex\PropelServiceProvider;
-use komenco\auth\CrowdIDUserProvider;
+use komenco\auth\OpenIDUserProvider;
 use komenco\provider\CrowdRestProvider;
 use komenco\provider\MenuProvider;
 use komenco\ui\AboutProvider;
@@ -213,7 +213,7 @@ class ConfiguredApplication extends Application {
 		$app = $this;
 
 		$this->register(new SessionServiceProvider());
-		$this->register(new OpauthSilexProvider(new CrowdIDUserProvider()));
+		$this->register(new OpauthSilexProvider(new OpenIDUserProvider()));
 		$this->register(new SecurityServiceProvider());
 		$this->register(new RememberMeServiceProvider());
 		$this['security.firewalls'] = array(
@@ -243,7 +243,7 @@ class ConfiguredApplication extends Application {
 					'always_remember_me' => true,
 				),
 				'users' => $this->share(function () use ($app) {
-					return new CrowdIDUserProvider($app);
+					return new OpenIDUserProvider($app);
 				}),
 			)
 		);

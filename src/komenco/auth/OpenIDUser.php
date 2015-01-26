@@ -27,7 +27,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use database\UserQuery;
 
-class CrowdIDUser implements AdvancedUserInterface {
+class OpenIDUser implements AdvancedUserInterface {
 	private $username;
 	private $firstname;
 	private $lastname;
@@ -37,7 +37,7 @@ class CrowdIDUser implements AdvancedUserInterface {
 	private $credentialsNonExpired;
 	private $accountNonLocked;
 	private $roles;
-	
+
 	public function __construct($username) {
 		$user = UserQuery::create()->findOneByKey($username);
 		if ($user == null) {
