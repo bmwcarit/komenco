@@ -1,0 +1,54 @@
+{#
+ Copyright (C) 2015, BMW Car IT GmbH
+
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+#}
+
+{% extends "layout.twig" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<h3>User Profile</h3>
+<hr>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">User Info</h3>
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>Username</dt>
+			<dd>{{ user().username }}</dd>
+			<dt>Firstname</dt>
+			<dd>{{ user().firstname }}</dd>
+			<dt>Lastname</dt>
+			<dd>{{ user().lastname }}</dd>
+			<dt>Email</dt>
+			<dd>{{ user().email }}</dd>
+			<dt>Active</dt>
+			<dd>
+				<input type="checkbox" name="user-active" checked="{{ user().enabled }}" disabled>
+				<script type="text/javascript">$("[name='user-active']").bootstrapSwitch();</script>
+			</dd>
+			<dt>Roles</dt>
+			<dd>{{ user().roles | join(' ' ) }}</dd>
+		</dl>
+	</div>
+</div>
+{% endblock %}
