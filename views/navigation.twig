@@ -44,14 +44,12 @@
 			<nav class="collapse navbar-collapse bs-navbar-collapse"/>
 				{{ knp_menu_render('main', {'currentClass': 'active'}) }}
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<p class="navbar-text navbar-right">
-							<a id="logout"
-								href="{{ path('logout') }}"
-								class="navbar-link">
-								{{ user().firstname }} (logout)
-							</a>
-						</p>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							role="button" aria-expanded="false">
+							{{ user().firstname }} <span class="caret"></span>
+						</a>
+						{% include 'user_menu.twig' %}
 					</li>
 				</ul>
 			</nav>

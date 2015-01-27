@@ -44,6 +44,7 @@ use komenco\auth\OpenIDUserProvider;
 use komenco\provider\CrowdRestProvider;
 use komenco\provider\MenuProvider;
 use komenco\ui\AboutProvider;
+use komenco\ui\UserProfileControllerProvider;
 use Igorw\Silex\ConfigServiceProvider;
 
 class ConfiguredApplication extends Application {
@@ -87,6 +88,7 @@ class ConfiguredApplication extends Application {
 		$this->register(new MenuProvider());
 
 		$this->mount('/about', new AboutProvider());
+		$this->mount('/user_profile', new UserProfileControllerProvider());
 	}
 
 	private function loadConfiguration() {
