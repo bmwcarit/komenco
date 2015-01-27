@@ -7,3 +7,4 @@ vendor/
 vendor-components/
 resources/db/sql-gen/
 *.sq3
+config/
