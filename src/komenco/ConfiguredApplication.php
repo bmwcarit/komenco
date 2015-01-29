@@ -129,7 +129,7 @@ class ConfiguredApplication extends Application {
 				$am->set('styles', new AssetCache(
 					new AssetCollection(
 						array(
-							new FileAsset($this->basedir .
+							new FileAsset($this->appdir .
 									'/resources/styles/main.less')
 						),
 						array($app['assetic.filter_manager']->get('lessphp'))
