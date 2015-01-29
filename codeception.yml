@@ -9,3 +9,10 @@ settings:
     colors: true
     memory_limit: 1024M
     log: true
+extensions:
+    enabled: [ReconfigureWebDriver]
+modules:
+    config:
+        WebDriver:
+            host: 127.0.0.1
+            url: 'http://localhost'

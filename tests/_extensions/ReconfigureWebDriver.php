@@ -21,6 +21,30 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-// This is global bootstrap for autoloading
+require_once __DIR__ . '/../../vendor/autoload.php';
 
-include __DIR__ . '/_extensions/ReconfigureWebDriver.php';
+class ReconfigureWebDriver extends \Codeception\Platform\Extension {
+	public function _initialize() {
+		$config = $this->getGlobalConfig();
+
+		$seleniumHost = getenv('SELENIUM_PORT_4444_TCP_ADDR');
+		if ($seleniumHost != FALSE) {
+			print("Reconfiguring the UI test suite to use ");
+			print("the selenium host specified\n");
+			print("in the environment variable SELENIUM_PORT_4444_TCP_ADDR: " . $seleniumHost . "\n\n");
+			$config['modules']['config']['WebDriver']['host'] = $seleniumHost;
+			$this->_reconfigure($config);
+		}
+
+		$seleniumURL = getenv('KOMENCO_PORT_80_TCP_ADDR');
+		if ($seleniumURL != FALSE) {
+			print("Reconfiguring the UI test suite to use ");
+			print("the komenco url specified\n");
+			print("in the environment variable KOMENCO_PORT_80_TCP_ADDR: " . $seleniumURL . "\n\n");
+			$config['modules']['config']['WebDriver']['url'] = "http://" . $seleniumURL;
+			$this->_reconfigure($config);
+		}
+	}
+}
+
+?>

@@ -1,0 +1,15 @@
+class_name: UIGuy
+modules:
+    enabled: [WebDriver]
+    config:
+        WebDriver:
+            browser: firefox
+            restart: false
+            clear_cookies: true
+            window_size: 1280x800
+env:
+    chrome:
+         modules:
+            config:
+                WebDriver:
+                    browser: chrome
