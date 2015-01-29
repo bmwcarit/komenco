@@ -27,7 +27,8 @@
 		"components/jquery": "~2.1",
 		"knplabs/knp-menu": "~2.0",
 		"oyejorge/less.php": "dev-master",
-		"igorw/config-service-provider": "1.2.2"
+		"igorw/config-service-provider": "1.2.2",
+		"codeception/codeception": "*"
 	},
 	"autoload": {
 		"psr-0": {
