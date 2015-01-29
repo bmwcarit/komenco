@@ -170,7 +170,10 @@ class ConfiguredApplication extends Application {
 		$app = $this;
 
 		$this->register(new TwigServiceProvider(), array(
-			'twig.path' => $this->basedir . '/views',
+			'twig.path' => array (
+				$this->appdir . '/views',
+				$this->basedir . '/views',
+			),
 			'twig.options' => array(
 				'cache' => false,
 				'debug' => $app['debug'],
