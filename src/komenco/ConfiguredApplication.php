@@ -59,6 +59,7 @@ class ConfiguredApplication extends Application {
 
 		$this->toRoot = '/../..';
 		$this->basedir = __DIR__ . $this->toRoot;
+		$this->appdir = '.';
 
 		$this->loadConfiguration();
 		$this['debug'] = $this['config']['debug'];
@@ -71,12 +72,12 @@ class ConfiguredApplication extends Application {
 		$this->register(new CrowdRestProvider());
 
 		$this->register(new MonologServiceProvider(), array(
-			'monolog.logfile' => $this->basedir . '/' . $this['config']['logfile'],
+			'monolog.logfile' => $this->appdir . '/' . $this['config']['logfile'],
 		));
 
 		$this->register(new PropelServiceProvider(), array(
 			'propel.config_file' =>
-						$this->basedir . '/src-gen/config/config.php'
+						$this->appdir . '/src-gen/config/config.php'
 		));
 
 		$this->registerTwig();
@@ -95,7 +96,7 @@ class ConfiguredApplication extends Application {
 		# load custom configuration from json
 		if(getenv('APP_ENVIRONMENT')) {
 			$env = getenv('APP_ENVIRONMENT');
-			$this->register(new ConfigServiceProvider($this->basedir . "/config/$env.json", array(), null, 'config'));
+			$this->register(new ConfigServiceProvider($this->appdir . "/config/$env.json", array(), null, 'config'));
 		}
 
 		# save openid server url in global variables
@@ -106,9 +107,9 @@ class ConfiguredApplication extends Application {
 		$app = $this;
 
 		$app->register(new AsseticServiceProvider());
-		$app['assetic.path_to_web'] = $this->basedir . '/web';
+		$app['assetic.path_to_web'] = $this->appdir . '/web';
 		$app['assetic.options'] = array(
-			'formulae_cache_dir' => $this->basedir . '/web/assetic/cache',
+			'formulae_cache_dir' => $this->appdir . '/web/assetic/cache',
 			'debug' => $app['debug'],
 			'auto_dump_assets' => $app['debug']
 		);
@@ -116,7 +117,7 @@ class ConfiguredApplication extends Application {
 		$app['assetic.filter_manager'] = $app->share(
 			$app->extend('assetic.filter_manager', function($fm, $app) {
 				$fm->set('lessphp', new LessphpFilter(
-					$this->basedir . '/vendor/bin/lessc'
+					$this->appdir . '/vendor/bin/lessc'
 				));
 
 				return $fm;
@@ -140,13 +141,13 @@ class ConfiguredApplication extends Application {
 
 				$am->set('scripts', new AssetCache(
 					new AssetCollection(array(
-						new FileAsset($this->basedir .
+						new FileAsset($this->appdir .
 								'/vendor/components/jquery/jquery.js'
 						),
-						new FileAsset($this->basedir .
+						new FileAsset($this->appdir .
 								'/vendor/twbs/bootstrap/dist/js/bootstrap.js'
 						),
-						new FileAsset($this->basedir .
+						new FileAsset($this->appdir .
 								'/vendor/nostalgiaz/bootstrap-switch/dist/js/bootstrap-switch.js'
 						)
 					)),
@@ -231,7 +232,7 @@ class ConfiguredApplication extends Application {
 						'callback_url' => 'opauth',
 						'Strategy' => [
 							'OpenID' => array(
-								'identifier_form' => 'openid_login.php'
+								'identifier_form' => $this->basedir . '/openid_login.php'
 							)
 						]
 					]
