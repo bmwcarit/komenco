@@ -155,10 +155,18 @@ class ConfiguredApplication extends Application {
 				));
 				$am->get('scripts')->setTargetPath('js/script.js');
 
-				$am->set('logo', new FileAsset($this->basedir . '/' . $this['config']['logo']));
+				$logo = $this->basedir . '/' . $this['config']['logo'];
+				if(file_exists($this->appdir . '/' . $this['config']['logo'])) {
+					$logo = $this->appdir . '/' . $this['config']['logo'];
+				}
+				$am->set('logo', new FileAsset($logo));
 				$am->get('logo')->setTargetPath('images/logo.png');
 
-				$am->set('companylogo', new FileAsset($this->basedir . '/' . $this['config']['companylogo']));
+				$companylogo = $this->basedir . '/' . $this['config']['companylogo'];
+				if(file_exists($this->appdir . '/' . $this['config']['companylogo'])) {
+					$companylogo = $this->appdir . '/' . $this['config']['companylogo'];
+				}
+				$am->set('companylogo', new FileAsset($companylogo));
 				$am->get('companylogo')->setTargetPath('images/companylogo.png');
 
 				return $am;
