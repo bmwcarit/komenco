@@ -91,12 +91,23 @@ class ConfiguredApplication extends Application {
 	}
 
 	private function loadConfiguration() {
-		$this->register(new ConfigServiceProvider(__DIR__ . '/DefaultConfig.php', array(), null, 'config'));
+		$this->register(new ConfigServiceProvider(__DIR__ . '/DefaultConfig.php',
+													array(), null, 'config'));
 
 		# load custom configuration from json
 		if(getenv('APP_ENVIRONMENT')) {
 			$env = getenv('APP_ENVIRONMENT');
-			$this->register(new ConfigServiceProvider($this->appdir . "/config/$env.json", array(), null, 'config'));
+			$this->register(new ConfigServiceProvider(
+									$this->appdir . "/config/$env.json",
+									array(),
+									null,
+									'config'));
+		} else if(file_exists($this->appdir . '/config/default.json')) {
+			$this->register(new ConfigServiceProvider(
+									$this->appdir . "/config/default.json",
+									array(),
+									null,
+									'config'));
 		}
 
 		# save openid server url in global variables
