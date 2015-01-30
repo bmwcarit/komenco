@@ -149,7 +149,7 @@ class ConfiguredApplication extends Application {
 					new AssetCollection(
 						array(
 							new FileAsset($this->appdir .
-									'/resources/styles/main.less')
+									'/res/styles/main.less')
 						),
 						array($app['assetic.filter_manager']->get('lessphp'))
 					),
@@ -198,8 +198,8 @@ class ConfiguredApplication extends Application {
 
 		$this->register(new TwigServiceProvider(), array(
 			'twig.path' => array (
-				$this->appdir . '/resources/views',
-				$this->basedir . '/resources/views',
+				$this->appdir . '/res/views',
+				$this->basedir . '/res/views',
 			),
 			'twig.options' => array(
 				'cache' => false,

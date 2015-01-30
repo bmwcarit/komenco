@@ -2,7 +2,7 @@
 ---
 propel:
   paths:
-      schemaDir: resources/db/schema
+      schemaDir: res/db/schema
       phpDir: src-gen
       phpConfDir: src-gen/config
       sqlDir: res-gen/db/sql-gen

@@ -32,7 +32,7 @@ tense language. The prefix can be inferred by the following rules:
 * Changes on top level files have the prefix *komenco*
 * Changes in the src/komenco folder have a prefix that equals the name of the
   subfolder
-* Changes in the resources folder have a prefix that equals the name of the
+* Changes in the res folder have a prefix that equals the name of the
   subfolder
 * All other changes have prefix that equals the name of the top level folder
 
