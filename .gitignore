@@ -1,12 +1,9 @@
 composer.lock
 *.log
 propel
-web/
 src-gen/
+res-gen/
 vendor/
-vendor-components/
-resources/db/sql-gen/
-*.sq3
 config/
 tests/_log
 tests/ui/UIGuy.php
