@@ -21,8 +21,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-require_once __DIR__ .  '/../..' . '/vendor/autoload.php';
-
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\SecurityServiceProvider;

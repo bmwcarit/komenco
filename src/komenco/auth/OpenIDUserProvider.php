@@ -21,8 +21,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-require_once __DIR__ .  '/../../..' . '/vendor/autoload.php';
-
 use SilexOpauth\Security\OpauthUserProviderInterface;
 use SilexOpauth\Security\OpauthResult;
 use Symfony\Component\Security\Core\User\UserProviderInterface;

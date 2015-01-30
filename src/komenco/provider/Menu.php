@@ -21,8 +21,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-require_once __DIR__ .  '/../../..' . '/vendor/autoload.php';
-
 class Menu {
 	protected $itemFactory;
 	protected $menu = array();

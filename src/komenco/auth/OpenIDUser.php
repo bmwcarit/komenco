@@ -21,8 +21,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-require_once __DIR__ .  '/../../..' . '/vendor/autoload.php';
-
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use database\UserQuery;
