@@ -92,6 +92,10 @@ class ConfiguredApplication extends Application {
 		$this->get('/login', function() {
 			return $this->render('login.twig');
 		})->bind('login');
+
+		$this->get('/', function() {
+			return $this->render('home.twig');
+		})->bind('home');
 	}
 
 	private function loadConfiguration() {

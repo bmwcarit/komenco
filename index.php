@@ -33,10 +33,6 @@ $app->log('Starting APP');
 
 $app->boot();
 
-$app->get('/', function() use ($app) {
-	return $app->render('home.twig');
-})->bind('home');
-
 $app->mount('/hello', new HelloWorldProvider());
 
 $app->run();
