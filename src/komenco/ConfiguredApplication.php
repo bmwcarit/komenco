@@ -262,7 +262,7 @@ class ConfiguredApplication extends Application {
 						'callback_url' => 'opauth',
 						'Strategy' => [
 							'OpenID' => array(
-								'identifier_form' => $this->basedir . '/openid_login.php'
+								'identifier_form' => $this->basedir . '/res/views/openid_login.php'
 							)
 						]
 					]
