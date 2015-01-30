@@ -198,8 +198,8 @@ class ConfiguredApplication extends Application {
 
 		$this->register(new TwigServiceProvider(), array(
 			'twig.path' => array (
-				$this->appdir . '/views',
-				$this->basedir . '/views',
+				$this->appdir . '/resources/views',
+				$this->basedir . '/resources/views',
 			),
 			'twig.options' => array(
 				'cache' => false,
