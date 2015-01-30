@@ -126,9 +126,9 @@ class ConfiguredApplication extends Application {
 		$app = $this;
 
 		$app->register(new AsseticServiceProvider());
-		$app['assetic.path_to_web'] = $this->appdir . '/web';
+		$app['assetic.path_to_web'] = $this->appdir . '/res-gen/web';
 		$app['assetic.options'] = array(
-			'formulae_cache_dir' => $this->appdir . '/web/assetic/cache',
+			'formulae_cache_dir' => $this->appdir . '/res-gen/web/assetic/cache',
 			'debug' => $app['debug'],
 			'auto_dump_assets' => $app['debug']
 		);
