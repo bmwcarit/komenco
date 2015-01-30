@@ -88,6 +88,10 @@ class ConfiguredApplication extends Application {
 
 		$this->mount('/about', new AboutProvider());
 		$this->mount('/user_profile', new UserProfileControllerProvider());
+
+		$this->get('/login', function() {
+			return $this->render('login.twig');
+		})->bind('login');
 	}
 
 	private function loadConfiguration() {
