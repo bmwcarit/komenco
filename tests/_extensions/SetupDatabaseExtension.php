@@ -84,6 +84,7 @@ class SetupDatabaseExtension extends \Codeception\Platform\Extension {
 		$command = $this->propelApp->find('sql:build');
 		$in = new ArrayInput(array(
 			'command'		=> 'sql:build',
+			'--config-dir'	=> 'config',
 			'--verbose'		=> 'vvv',
 			'--overwrite'	=> true,
 		));
@@ -94,6 +95,7 @@ class SetupDatabaseExtension extends \Codeception\Platform\Extension {
 		$command = $this->propelApp->find('model:build');
 		$in = new ArrayInput(array(
 			'command'		=> 'model:build',
+			'--config-dir'	=> 'config',
 			'--verbose'		=> 'vvv',
 		));
 		$command->run($in, $this->propelOutput);
@@ -103,6 +105,7 @@ class SetupDatabaseExtension extends \Codeception\Platform\Extension {
 		$command = $this->propelApp->find('config:convert');
 		$in = new ArrayInput(array(
 			'command'		=> 'config:convert',
+			'--config-dir'	=> 'config',
 			'--verbose'		=> 'vvv',
 		));
 		$command->run($in, $this->propelOutput);
@@ -112,6 +115,7 @@ class SetupDatabaseExtension extends \Codeception\Platform\Extension {
 		$command = $this->propelApp->find('sql:insert');
 		$in = new ArrayInput(array(
 			'command'		=> 'sql:insert',
+			'--config-dir'	=> 'config',
 			'--verbose'		=> 'vvv',
 		));
 		$command->run($in, $this->propelOutput);

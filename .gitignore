@@ -4,6 +4,6 @@ propel
 src-gen/
 res-gen/
 vendor/
-config/
+config/*.json
 tests/_log
 tests/ui/UIGuy.php
