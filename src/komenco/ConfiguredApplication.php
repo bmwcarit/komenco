@@ -53,6 +53,7 @@ class ConfiguredApplication extends Application {
 	use Application\UrlGeneratorTrait;
 	use Application\MonologTrait;
 	use Application\FormTrait;
+	use provider\traits\JiraTrait;
 
 	protected $basedir;
 
