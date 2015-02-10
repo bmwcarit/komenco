@@ -41,7 +41,7 @@ use Propel\Silex\PropelServiceProvider;
 use komenco\auth\OpenIDUserProvider;
 use komenco\provider\CrowdRestProvider;
 use komenco\provider\MenuProvider;
-use komenco\ui\AboutProvider;
+use komenco\ui\AboutControllerProvider;
 use komenco\ui\UserProfileControllerProvider;
 use Igorw\Silex\ConfigServiceProvider;
 
@@ -90,7 +90,7 @@ class ConfiguredApplication extends Application {
 	}
 
 	private function registerMounts() {
-		$this->mount('/about', new AboutProvider());
+		$this->mount('/about', new AboutControllerProvider());
 		$this->mount('/user_profile', new UserProfileControllerProvider());
 
 		$this->get('/login', function() {

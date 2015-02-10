@@ -24,7 +24,7 @@
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 
-class AboutProvider implements ControllerProviderInterface{
+class AboutControllerProvider implements ControllerProviderInterface{
 	public function connect(Application $app) {
 		$controllers = $app['controllers_factory'];
 
