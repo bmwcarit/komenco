@@ -28,6 +28,7 @@ use Silex\Application;
 use chobie\Jira\Api;
 use chobie\Jira\Api\Authentication\Anonymous;
 use chobie\Jira\Api\Authentication\Basic;
+use chobie\Jira\Issues\Walker;
 use komenco\jira\GuzzleClient;
 
 class JiraRestServiceProvider implements ServiceProviderInterface {
@@ -62,6 +63,13 @@ class JiraRestServiceProvider implements ServiceProviderInterface {
 								$app['jira.api.client']);
 
 			return $client;
+		});
+
+		$app['jira.api.walker'] = $app->protect(function ($jql) use ($app){
+			$walker = new Walker($app['jira.api']);
+			$walker->push($jql, "*navigable");
+
+			return $walker;
 		});
 	}
 }
