@@ -43,6 +43,7 @@ use komenco\provider\CrowdRestProvider;
 use komenco\provider\MenuProvider;
 use komenco\ui\AboutControllerProvider;
 use komenco\ui\UserProfileControllerProvider;
+use bmwcarit\oauth\JiraOAuthServiceProvider;
 use Igorw\Silex\ConfigServiceProvider;
 
 class ConfiguredApplication extends Application {
@@ -85,6 +86,7 @@ class ConfiguredApplication extends Application {
 		$this->registerAssetic();
 		$this->register(new FormServiceProvider());
 		$this->register(new MenuProvider());
+		$this->registerJira();
 
 		$this->registerMounts();
 	}
@@ -100,6 +102,24 @@ class ConfiguredApplication extends Application {
 		$this->get('/', function() {
 			return $this->render('home.twig');
 		})->bind('home');
+	}
+
+	private function registerJira() {
+		$options = array();
+		if (isset($this['config']['jira']['server_url'])) {
+			$options['base_url'] = $this['config']['jira']['server_url'];
+		}
+
+		if (isset($this['config']['jira']['private_key'])) {
+			$options['private_key'] = realpath($this->basedir .
+										$this['config']['jira']['private_key']);
+		}
+
+		if (isset($this['config']['jira']['consumer_key'])) {
+			$options['consumer_key'] = $this['config']['jira']['consumer_key'];
+		}
+
+		$this->register(new JiraOAuthServiceProvider($options));
 	}
 
 	private function loadConfiguration() {
