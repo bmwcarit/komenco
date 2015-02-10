@@ -18,7 +18,7 @@
 		"icehero/silex-opauth": "dev-master",
 		"opauth/openid": "dev-master",
 		"monolog/monolog": ">=1.0.0",
-		"guzzlehttp/guzzle": "~4.0",
+		"guzzlehttp/guzzle": "~5.1",
 		"propel/propel": "~2.0@dev",
 		"propel/propel-service-provider": "2.x",
 		"twbs/bootstrap": "~3.2",
@@ -28,7 +28,8 @@
 		"knplabs/knp-menu": "~2.0",
 		"oyejorge/less.php": "dev-master",
 		"igorw/config-service-provider": "1.2.2",
-		"codeception/codeception": "*"
+		"codeception/codeception": "*",
+		"bmwcarit/silex-jira-oauth-provider": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
