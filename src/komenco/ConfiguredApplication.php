@@ -86,6 +86,10 @@ class ConfiguredApplication extends Application {
 		$this->register(new FormServiceProvider());
 		$this->register(new MenuProvider());
 
+		$this->registerMounts();
+	}
+
+	private function registerMounts() {
 		$this->mount('/about', new AboutProvider());
 		$this->mount('/user_profile', new UserProfileControllerProvider());
 
