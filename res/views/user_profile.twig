@@ -43,8 +43,15 @@
 			<dd>{{ user().email }}</dd>
 			<dt>Active</dt>
 			<dd>
-				<input type="checkbox" name="user-active" checked="{{ user().enabled }}" disabled>
-				<script type="text/javascript">$("[name='user-active']").bootstrapSwitch();</script>
+				<input type="checkbox" id="user_active"/>
+				<script type="text/javascript">
+					$('#user_active').
+							bootstrapSwitch({
+								state: {{ (user().enabled) ? 'true':'false' }},
+								size: 'mini',
+								readonly: true
+							});
+				</script>
 			</dd>
 			<dt>Roles</dt>
 			<dd>{{ user().roles | join(' ' ) }}</dd>
