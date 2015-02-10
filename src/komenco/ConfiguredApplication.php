@@ -41,6 +41,7 @@ use Propel\Silex\PropelServiceProvider;
 use komenco\auth\OpenIDUserProvider;
 use komenco\provider\CrowdRestProvider;
 use komenco\provider\MenuProvider;
+use komenco\provider\JiraRestServiceProvider;
 use komenco\ui\AboutControllerProvider;
 use komenco\ui\UserProfileControllerProvider;
 use bmwcarit\oauth\JiraOAuthServiceProvider;
@@ -120,6 +121,7 @@ class ConfiguredApplication extends Application {
 		}
 
 		$this->register(new JiraOAuthServiceProvider($options));
+		$this->register(new JiraRestServiceProvider($options));
 	}
 
 	private function loadConfiguration() {
