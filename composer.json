@@ -29,7 +29,8 @@
 		"oyejorge/less.php": "dev-master",
 		"igorw/config-service-provider": "1.2.2",
 		"codeception/codeception": "*",
-		"bmwcarit/silex-jira-oauth-provider": "dev-master"
+		"bmwcarit/silex-jira-oauth-provider": "dev-master",
+		"chobie/jira-api-restclient": "~2.0"
 	},
 	"autoload": {
 		"psr-0": {
