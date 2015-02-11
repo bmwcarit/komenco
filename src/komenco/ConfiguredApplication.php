@@ -129,18 +129,25 @@ class ConfiguredApplication extends Application {
 		$this->register(new ConfigServiceProvider(__DIR__ . '/DefaultConfig.php',
 													array(), null, 'config'));
 
+		$komenco_config_vars = array_filter(filter_input_array(INPUT_ENV),
+				function ($key){
+					return strpos($key, 'KOMENCO') === 0;
+				},
+				ARRAY_FILTER_USE_KEY
+		);
+
 		# load custom configuration from json
 		if(getenv('APP_ENVIRONMENT')) {
 			$env = getenv('APP_ENVIRONMENT');
 			$this->register(new ConfigServiceProvider(
 									$this->appdir . "/config/$env.json",
-									array(),
+									$komenco_config_vars,
 									null,
 									'config'));
 		} else if(file_exists($this->appdir . '/config/default.json')) {
 			$this->register(new ConfigServiceProvider(
 									$this->appdir . "/config/default.json",
-									array(),
+									$komenco_config_vars,
 									null,
 									'config'));
 		}
