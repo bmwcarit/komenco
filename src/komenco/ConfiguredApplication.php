@@ -192,6 +192,7 @@ class ConfiguredApplication extends Application {
 				));
 				$am->get('styles')->setTargetPath('css/styles.css');
 
+				$datatablesDir = $this->appdir .'/vendor/datatables/datatables';
 				$am->set('scripts', new AssetCache(
 					new AssetCollection(array(
 						new FileAsset($this->appdir .
@@ -221,6 +222,19 @@ class ConfiguredApplication extends Application {
 				}
 				$am->set('companylogo', new FileAsset($companylogo));
 				$am->get('companylogo')->setTargetPath('images/companylogo.png');
+
+				// DateTable images
+				$images = array('sort_both.png',
+								'sort_asc.png',
+								'sort_desc.png',
+								'sort_asc_disabled.png',
+								'sort_desc_disabled.png');
+				foreach ($images as $image) {
+					$name = basename($image, '.png');
+					$filePath = $datatablesDir . '/media/images/' . $image;
+					$am->set($name, new FileAsset($filePath));
+					$am->get($name)->setTargetPath('images/' . $image);
+				}
 
 				return $am;
 			})
