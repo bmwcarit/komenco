@@ -203,6 +203,12 @@ class ConfiguredApplication extends Application {
 						),
 						new FileAsset($this->appdir .
 								'/vendor/nostalgiaz/bootstrap-switch/dist/js/bootstrap-switch.js'
+						),
+						new FileAsset($datatablesDir .
+								'/media/js/jquery.dataTables.js'
+						),
+						new FileAsset($datatablesDir .
+								'/examples/resources/bootstrap/3/dataTables.bootstrap.js'
 						)
 					)),
 					new FilesystemCache($app['assetic.options']['formulae_cache_dir'])
