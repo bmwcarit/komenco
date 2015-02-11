@@ -30,7 +30,8 @@
 		"igorw/config-service-provider": "1.2.2",
 		"codeception/codeception": "*",
 		"bmwcarit/silex-jira-oauth-provider": "dev-master",
-		"chobie/jira-api-restclient": "~2.0"
+		"chobie/jira-api-restclient": "~2.0",
+		"datatables/datatables": "~1.10"
 	},
 	"autoload": {
 		"psr-0": {
