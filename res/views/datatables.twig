@@ -20,37 +20,25 @@
  DEALINGS IN THE SOFTWARE.
 #}
 
-<!DOCTYPE html>
-<html>
-	<head>
-		{% block head %}
-			<meta charset="utf-8">
-			<meta name="viewport"
-					content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" charset="utf-8">
+	$.extend( $.fn.dataTable.defaults, {
+		dom: '<"panel panel-default"' +
+				'<"panel-heading"' +
+					'<"row"' +
+						'<"col-md-6 pull-left"l>' +
+						'<"col-md-6 pull-right"f>' +
+					'>' +
+				'>' +
+				'rt' +
+				'<"panel-footer"' +
+					'<"row"' +
+						's' +
+						'<"col-md-6 pull-left"i>' +
+						'<"col-md-6 pull-right"p>' +
+					'>' +
+				'>' +
+			'>'
+	} );
 
-			<title>{{ app_conf.name }} - {% block title %}{% endblock %}</title>
-
-			{% javascripts '@scripts' name='script' %}
-				<script type="text/javascript"charset="utf-8"
-						src="{{ app.request.basepath }}/res-gen/web/{{ asset_url }}">
-				</script>
-			{% endjavascripts %}
-
-			{% stylesheets '@styles' name='styles' %}
-				 <link rel="stylesheet" href="{{ app.request.basepath }}/res-gen/web/{{ asset_url }}" media="screen"/>
-			{% endstylesheets %}
-
-			{% include 'datatables.twig' %}
-		{% endblock head %}
-	</head>
-	<body>
-		{% block container %}
-			{% include 'navigation.twig' %}
-			<div class="container">
-				<div id="alerts"></div>
-				{% block content %}{% endblock %}
-			</div>
-			{% include 'footer.twig' %}
-		{% endblock container %}
-	</body>
-</html>
+	$.extend($.fn.dataTable.ext.classes, {"sNoFooter": ""});
+</script>
