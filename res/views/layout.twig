@@ -31,13 +31,15 @@
 			<title>{{ app_conf.name }} - {% block title %}{% endblock %}</title>
 
 			{% javascripts '@scripts' name='script' %}
-				<script type="text/javascript"charset="utf-8"
+				<script type="text/javascript" charset="utf-8"
 						src="{{ app.request.basepath }}/res-gen/web/{{ asset_url }}">
 				</script>
 			{% endjavascripts %}
 
 			{% stylesheets '@styles' name='styles' %}
-				 <link rel="stylesheet" href="{{ app.request.basepath }}/res-gen/web/{{ asset_url }}" media="screen"/>
+				 <link rel="stylesheet"
+						href="{{ app.request.basepath }}/res-gen/web/{{ asset_url }}"
+						media="screen"/>
 			{% endstylesheets %}
 
 			{% include 'datatables.twig' %}
