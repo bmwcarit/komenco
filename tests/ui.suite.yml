@@ -1,6 +1,6 @@
 class_name: UIGuy
 modules:
-    enabled: [WebDriver, UIHelper]
+    enabled: [WebDriver, helpers\UIHelper]
     config:
         WebDriver:
             browser: firefox

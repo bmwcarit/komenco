@@ -40,7 +40,8 @@
 			"config\\": "src-gen/"
 		},
 		"psr-4": {
-			"extensions\\": "tests/_extensions"
+			"extensions\\": "tests/_extensions",
+			"helpers\\": "tests/_helpers"
 		}
 	}
 }
