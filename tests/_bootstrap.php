@@ -22,6 +22,3 @@
  */
 
 // This is global bootstrap for autoloading
-
-include __DIR__ . '/_extensions/ReconfigureWebDriver.php';
-include __DIR__ . '/_extensions/SetupDatabaseExtension.php';

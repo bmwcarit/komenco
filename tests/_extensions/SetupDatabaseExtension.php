@@ -1,4 +1,4 @@
-<?php
+<?php namespace extensions;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *
@@ -20,8 +20,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-$loader = require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Propel\Runtime\Propel;
 

@@ -38,6 +38,9 @@
 			"komenco\\": "src/",
 			"database\\": "src-gen/",
 			"config\\": "src-gen/"
+		},
+		"psr-4": {
+			"extensions\\": "tests/_extensions"
 		}
 	}
 }
