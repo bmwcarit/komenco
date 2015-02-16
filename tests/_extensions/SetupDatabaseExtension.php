@@ -65,7 +65,7 @@ class SetupDatabaseExtension extends \Codeception\Platform\Extension {
 
 	protected function propelLoadApplication() {
 		$finder = new Finder();
-		$finder->files()->name('*.php')->in(__DIR__.'/../../vendor/propel/propel/src/Propel/Generator/Command')->depth(0);
+		$finder->files()->name('*.php')->in('./vendor/propel/propel/src/Propel/Generator/Command')->depth(0);
 
 		$this->propelApp = new Application('Propel', Propel::VERSION);
 
