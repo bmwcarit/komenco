@@ -34,6 +34,7 @@ use SilexAssetic\AsseticServiceProvider;
 use Assetic\Asset\AssetCache;
 use Assetic\Asset\AssetCollection;
 use Assetic\Asset\FileAsset;
+use Assetic\Asset\HttpAsset;
 use Assetic\Cache\FilesystemCache;
 use Assetic\Filter\LessphpFilter;
 use SilexOpauth\Security\OpauthSilexProvider;
@@ -158,6 +159,8 @@ class ConfiguredApplication extends Application {
 
 	private function registerAssetic() {
 		$app = $this;
+		$datatablesPlugInsCDN =
+				"https://cdn.datatables.net/plug-ins/f2c75b7247b";
 
 		$app->register(new AsseticServiceProvider());
 		$app['assetic.path_to_web'] = $this->appdir . '/res-gen/web';
@@ -178,7 +181,8 @@ class ConfiguredApplication extends Application {
 		);
 
 		$app['assetic.asset_manager'] = $app->share(
-			$app->extend('assetic.asset_manager', function($am, $app) {
+			$app->extend('assetic.asset_manager', function($am, $app)
+					use ($datatablesPlugInsCDN) {
 				$am->set('styles', new AssetCache(
 					new AssetCollection(
 						array(
@@ -207,8 +211,8 @@ class ConfiguredApplication extends Application {
 						new FileAsset($datatablesDir .
 								'/media/js/jquery.dataTables.js'
 						),
-						new FileAsset($datatablesDir .
-								'/examples/resources/bootstrap/3/dataTables.bootstrap.js'
+						new HttpAsset($datatablesPlugInsCDN .
+								'/integration/bootstrap/3/dataTables.bootstrap.js'
 						)
 					)),
 					new FilesystemCache($app['assetic.options']['formulae_cache_dir'])
