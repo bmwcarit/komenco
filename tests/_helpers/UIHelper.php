@@ -26,10 +26,13 @@ use komenco\ConfiguredApplication;
 class UIHelper extends \Codeception\Module {
 
 	protected $app;
+	protected $webDriver;
 
 	public function _cleanup() {
 		$this->app = new ConfiguredApplication();
 		$this->app->boot();
+
+		$this->webDriver = $this->getModule('WebDriver');
 	}
 
 	public function _before(\Codeception\TestCase $test) {
@@ -38,5 +41,19 @@ class UIHelper extends \Codeception\Module {
 		/////////////////////////////////////
 		// initialize your database here
 		/////////////////////////////////////
+	}
+
+	public function login($username, $password, $checkText = 'Home') {
+		$this->webDriver->amOnPage('/');
+		$this->webDriver->seeInCurrentUrl('login');
+		$this->webDriver->see('Welcome to ' . $this->app['config']['name']);
+		$this->webDriver->click('Login');
+		$this->webDriver->see('SIMPLEID');
+		$this->webDriver->see('Secure login using HTTPS');
+		$this->webDriver->fillField('name', $username);
+		$this->webDriver->fillField('pass', $password);
+		$this->webDriver->click('Log in');
+		$this->webDriver->click('OK');
+		$this->webDriver->see($checkText);
 	}
 }
