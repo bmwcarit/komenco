@@ -27,14 +27,7 @@ $I = new UIGuy($scenario);
 $I->login('bob', 'bob');
 $I->expectTo('be on the Komenco home page.');
 
-$I->amGoingTo('logout');
-$I->click('Bob');
-$I->see('Profile');
-$I->see('Logout');
-
-$I->click('Logout');
+$I->logout('Bob');
 $I->expectTo('be on komenco login page.');
-$I->seeInCurrentUrl('login');
-$I->see('Welcome to komenco');
 
 ?>

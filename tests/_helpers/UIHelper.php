@@ -56,4 +56,13 @@ class UIHelper extends \Codeception\Module {
 		$this->webDriver->click('OK');
 		$this->webDriver->see($checkText);
 	}
+
+	public function logout($username) {
+		$this->webDriver->click($username);
+		$this->webDriver->see('Profile');
+		$this->webDriver->see('Logout');
+		$this->webDriver->click('Logout');
+		$this->webDriver->seeInCurrentUrl('login');
+		$this->webDriver->see('Welcome to ' . $this->app['config']['name']);
+	}
 }
