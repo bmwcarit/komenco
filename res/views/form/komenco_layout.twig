@@ -74,3 +74,29 @@
 	</label>
 {%- endspaceless %}
 {%- endblock checkbox_radio_label %}
+
+{% block date_widget -%}
+	{% if widget == 'single_text' %}
+		{{- block('form_widget_simple') -}}
+	{% else %}
+		{% for key in attr|keys %}
+			{% set attr =
+				attr|merge({('data-date-' ~ key): attr[key] })|slice(1) %}
+		{% endfor %}
+
+		<div id="group_{{ id }}"
+			{{ block('widget_container_attributes') }}
+			class="input-group date">
+			{% set attr = attr|merge({class:
+								(attr.class|default('') ~ ' form-control')|trim
+							}) %}
+			<input type="text" {{ block('widget_attributes') }}/>
+			<div class="input-group-addon">
+				<i class="glyphicon glyphicon-calendar"></i>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#group_{{ id }}').datepicker();
+		</script>
+	{% endif %}
+{%- endblock date_widget %}
