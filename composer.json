@@ -31,7 +31,8 @@
 		"codeception/codeception": "*",
 		"bmwcarit/silex-jira-oauth-provider": "dev-master",
 		"chobie/jira-api-restclient": "~2.0",
-		"datatables/datatables": "~1.10"
+		"datatables/datatables": "~1.10",
+		"eternicode/bootstrap-datepicker": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
