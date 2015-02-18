@@ -4,6 +4,9 @@
 	"keywords": ["komenco", "beginning"],
 	"license": "proprietary",
 	"minimum-stability": "dev",
+	"bin": [
+		"res/patches/apply-patches.sh"
+	],
 	"require": {
 		"silex/silex": ">=1.2",
 		"mheap/Silex-Assetic": "*",
