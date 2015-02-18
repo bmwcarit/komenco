@@ -208,6 +208,9 @@ class ConfiguredApplication extends Application {
 						new FileAsset($this->appdir .
 								'/vendor/nostalgiaz/bootstrap-switch/dist/js/bootstrap-switch.js'
 						),
+						new FileAsset($this->appdir .
+								'/vendor/eternicode/bootstrap-datepicker/js/bootstrap-datepicker.js'
+						),
 						new FileAsset($datatablesDir .
 								'/media/js/jquery.dataTables.js'
 						),
