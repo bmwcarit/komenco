@@ -25,7 +25,7 @@ use Silex\ServiceProviderInterface;
 use Silex\Application;
 use GuzzleHttp\Client;
 
-class CrowdRestProvider implements ServiceProviderInterface {
+class CrowdRestServiceProvider implements ServiceProviderInterface {
 	public function boot(Application $app) {}
 
 	public function register(Application $app) {

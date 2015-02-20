@@ -40,7 +40,7 @@ use Assetic\Filter\LessphpFilter;
 use SilexOpauth\Security\OpauthSilexProvider;
 use Propel\Silex\PropelServiceProvider;
 use komenco\auth\OpenIDUserProvider;
-use komenco\provider\CrowdRestProvider;
+use komenco\provider\CrowdRestServiceProvider;
 use komenco\provider\MenuProvider;
 use komenco\provider\JiraRestServiceProvider;
 use komenco\ui\AboutControllerProvider;
@@ -73,7 +73,7 @@ class ConfiguredApplication extends Application {
 		));
 
 		$this->register(new UrlGeneratorServiceProvider());
-		$this->register(new CrowdRestProvider());
+		$this->register(new CrowdRestServiceProvider());
 
 		$this->register(new MonologServiceProvider(), array(
 			'monolog.logfile' => $this->appdir . '/' . $this['config']['logfile'],
