@@ -1,4 +1,4 @@
-<?php namespace komenco\auth;
+<?php namespace komenco\util\openid;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *

@@ -1,4 +1,4 @@
-<?php  namespace komenco\auth;
+<?php  namespace komenco\util\openid;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *
@@ -87,6 +87,6 @@ class OpenIDUserProvider implements OpauthUserProviderInterface,
 	}
 
 	public function supportsClass($class) {
-		return $class === 'komenco\auth\OpenIDUser';
+		return $class === 'komenco\util\openid\OpenIDUser';
 	}
 }

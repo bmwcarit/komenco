@@ -39,7 +39,7 @@ use Assetic\Cache\FilesystemCache;
 use Assetic\Filter\LessphpFilter;
 use SilexOpauth\Security\OpauthSilexProvider;
 use Propel\Silex\PropelServiceProvider;
-use komenco\auth\OpenIDUserProvider;
+use komenco\util\openid\OpenIDUserProvider;
 use komenco\provider\CrowdRestServiceProvider;
 use komenco\provider\MenuServiceProvider;
 use komenco\provider\JiraRestServiceProvider;
