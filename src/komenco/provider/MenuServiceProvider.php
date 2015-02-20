@@ -28,7 +28,7 @@ use Knp\Menu\Integration\Silex\KnpMenuServiceProvider;
 use Knp\Menu\Matcher\Voter\RouteVoter;
 use Knp\Menu\Matcher\Matcher;
 
-class MenuProvider implements ServiceProviderInterface {
+class MenuServiceProvider implements ServiceProviderInterface {
 	public function boot(Application $app) {
 		$app['compiled_menu'] = function($app) {
 			return $app['menu']->getMenu();

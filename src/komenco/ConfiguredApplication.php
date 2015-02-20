@@ -41,7 +41,7 @@ use SilexOpauth\Security\OpauthSilexProvider;
 use Propel\Silex\PropelServiceProvider;
 use komenco\auth\OpenIDUserProvider;
 use komenco\provider\CrowdRestServiceProvider;
-use komenco\provider\MenuProvider;
+use komenco\provider\MenuServiceProvider;
 use komenco\provider\JiraRestServiceProvider;
 use komenco\ui\AboutControllerProvider;
 use komenco\ui\UserProfileControllerProvider;
@@ -88,7 +88,7 @@ class ConfiguredApplication extends Application {
 		$this->registerSecurity();
 		$this->registerAssetic();
 		$this->register(new FormServiceProvider());
-		$this->register(new MenuProvider());
+		$this->register(new MenuServiceProvider());
 		$this->registerJira();
 
 		$this->registerMounts();
