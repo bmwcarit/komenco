@@ -30,7 +30,7 @@ use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Post\PostFile;
 use GuzzleHttp\Exception\ClientException;
 
-class GuzzleClient implements ClientInterface {
+class JiraGuzzleClient implements ClientInterface {
 	protected $client;
 
 	public function __construct(Client $client) {

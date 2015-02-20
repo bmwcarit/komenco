@@ -27,7 +27,7 @@ use chobie\Jira\Api;
 use chobie\Jira\Api\Authentication\Anonymous;
 use chobie\Jira\Api\Authentication\Basic;
 use chobie\Jira\Issues\Walker;
-use komenco\jira\GuzzleClient;
+use komenco\jira\JiraGuzzleClient;
 
 class JiraRestServiceProvider implements ServiceProviderInterface {
 	protected $config;
@@ -45,7 +45,7 @@ class JiraRestServiceProvider implements ServiceProviderInterface {
 
 	public function register(Application $app) {
 		$app['jira.api.client'] = $app->share(function ($app) {
-			return new GuzzleClient($app['jira.oauth.client']);
+			return new JiraGuzzleClient($app['jira.oauth.client']);
 		});
 
 		if (empty($this->config['basic_auth'])) {
