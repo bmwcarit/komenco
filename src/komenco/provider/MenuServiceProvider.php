@@ -27,6 +27,7 @@ use Knp\Menu\Loader\ArrayLoader;
 use Knp\Menu\Integration\Silex\KnpMenuServiceProvider;
 use Knp\Menu\Matcher\Voter\RouteVoter;
 use Knp\Menu\Matcher\Matcher;
+use komenco\util\Menu;
 
 class MenuServiceProvider implements ServiceProviderInterface {
 	public function boot(Application $app) {
