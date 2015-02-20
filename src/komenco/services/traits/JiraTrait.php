@@ -1,4 +1,4 @@
-<?php namespace komenco\provider\traits;
+<?php namespace komenco\services\traits;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *

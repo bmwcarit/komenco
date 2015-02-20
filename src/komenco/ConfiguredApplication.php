@@ -40,9 +40,9 @@ use Assetic\Filter\LessphpFilter;
 use SilexOpauth\Security\OpauthSilexProvider;
 use Propel\Silex\PropelServiceProvider;
 use komenco\util\openid\OpenIDUserProvider;
-use komenco\provider\CrowdRestServiceProvider;
-use komenco\provider\MenuServiceProvider;
-use komenco\provider\JiraRestServiceProvider;
+use komenco\services\CrowdRestServiceProvider;
+use komenco\services\MenuServiceProvider;
+use komenco\services\JiraRestServiceProvider;
 use komenco\ui\AboutControllerProvider;
 use komenco\ui\UserProfileControllerProvider;
 use bmwcarit\oauth\JiraOAuthServiceProvider;
@@ -54,7 +54,7 @@ class ConfiguredApplication extends Application {
 	use Application\UrlGeneratorTrait;
 	use Application\MonologTrait;
 	use Application\FormTrait;
-	use provider\traits\JiraTrait;
+	use services\traits\JiraTrait;
 
 	protected $basedir;
 

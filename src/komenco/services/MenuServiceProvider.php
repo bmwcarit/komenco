@@ -1,4 +1,4 @@
-<?php namespace komenco\provider;
+<?php namespace komenco\services;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *
@@ -23,30 +23,39 @@
 
 use Silex\ServiceProviderInterface;
 use Silex\Application;
-use GuzzleHttp\Client;
+use Knp\Menu\Loader\ArrayLoader;
+use Knp\Menu\Integration\Silex\KnpMenuServiceProvider;
+use Knp\Menu\Matcher\Voter\RouteVoter;
+use Knp\Menu\Matcher\Matcher;
+use komenco\util\Menu;
 
-class CrowdRestServiceProvider implements ServiceProviderInterface {
-	public function boot(Application $app) {}
+class MenuServiceProvider implements ServiceProviderInterface {
+	public function boot(Application $app) {
+		$app['compiled_menu'] = function($app) {
+			return $app['menu']->getMenu();
+		};
+
+		$app['knp_menu.menus'] = array('main' =>'compiled_menu');
+	}
 
 	public function register(Application $app) {
-		$app['crowd'] = $app->share(function ($app) {
-			$client = new Client([
-				'base_url' => [
-					'https://crowd.bmw-carit.de/crowd/rest/usermanagement/{version}/',
-					['version' => 'latest']
-				],
-				'debug' => $app['debug'],
-				'defaults' => [
-					'headers' => [
-						'Content-Type' => 'application/json',
-						'Accept' => 'application/json'
-					],
-					'auth' => ['starterkit', 'test'],
-					'exceptions' => false,
-				]
-			]);
+		$app->register(new KnpMenuServiceProvider());
+		$app['knp_menu.default_renderer'] = 'twig';
+		$app['knp_menu.template'] = 'menu.twig';
 
-			return $client;
+		$app['route.voter'] = $app->share(function (Application $app) {
+			$voter = new RouteVoter();
+			$voter->setRequest($app['request']);
+
+			return $voter;
 		});
+
+		$app['knp_menu.matcher.configure'] =
+				$app->protect(function (Matcher $matcher) use ($app) {
+					$matcher->addVoter($app['route.voter']);
+				});
+
+		$app['menu'] = new Menu($app['knp_menu.factory'],
+							new ArrayLoader($app['knp_menu.factory']));
 	}
 }
