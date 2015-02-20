@@ -43,8 +43,8 @@ use komenco\util\openid\OpenIDUserProvider;
 use komenco\services\CrowdRestServiceProvider;
 use komenco\services\MenuServiceProvider;
 use komenco\services\JiraRestServiceProvider;
-use komenco\ui\AboutControllerProvider;
-use komenco\ui\UserProfileControllerProvider;
+use komenco\controller\AboutControllerProvider;
+use komenco\controller\UserProfileControllerProvider;
 use bmwcarit\oauth\JiraOAuthServiceProvider;
 use Igorw\Silex\ConfigServiceProvider;
 

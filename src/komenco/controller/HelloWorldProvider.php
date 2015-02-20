@@ -1,4 +1,4 @@
-<?php namespace komenco\ui;
+<?php namespace komenco\controller;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *
@@ -24,28 +24,19 @@
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 
-class AboutControllerProvider implements ControllerProviderInterface{
+class HelloWorldProvider implements ControllerProviderInterface{
 	public function connect(Application $app) {
 		$controllers = $app['controllers_factory'];
 
-		$app['about.template'] = 'about.twig';
-		$app['about.packages.file'] = __DIR__ . '/../../..' .
-										'/vendor/composer/installed.json';
-
 		$controllers->get('/', function (Application $app) {
-			$licenseFile = $app['about.packages.file'];
-			$data = array();
-			if (file_exists($licenseFile)) {
-				$file = file_get_contents($licenseFile);
-				$data = json_decode($file);
-			} else {
-				$app->log('Could not find licenses file at ' .
-							$app['about.packages.file']);
-			}
+			return $app->render('helloworld.twig');
+		})->bind('test');
 
-			return $app->render($app['about.template'],
-								array('packages' => $data));
-		})->bind('about');
+		$menu = array(
+				'name' => 'test',
+				'route' => 'test',
+		);
+		$app['menu']->addItem($menu);
 
 		return $controllers;
 	}

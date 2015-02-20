@@ -1,4 +1,4 @@
-<?php namespace komenco\ui;
+<?php namespace komenco\controller;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *
