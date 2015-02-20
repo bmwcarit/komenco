@@ -1,4 +1,4 @@
-<?php namespace komenco\jira;
+<?php namespace komenco\util;
 /*
  * Copyright (C) 2015, BMW Car IT GmbH
  *

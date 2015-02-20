@@ -27,7 +27,7 @@ use chobie\Jira\Api;
 use chobie\Jira\Api\Authentication\Anonymous;
 use chobie\Jira\Api\Authentication\Basic;
 use chobie\Jira\Issues\Walker;
-use komenco\jira\JiraGuzzleClient;
+use komenco\util\JiraGuzzleClient;
 
 class JiraRestServiceProvider implements ServiceProviderInterface {
 	protected $config;
