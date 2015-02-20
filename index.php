@@ -24,7 +24,6 @@
 $loader = require_once __DIR__ . '/vendor/autoload.php';
 
 use komenco\ConfiguredApplication;
-use komenco\controller\HelloWorldProvider;
 
 $app = new ConfiguredApplication();
 
@@ -32,7 +31,5 @@ $app->log('=========================================');
 $app->log('Starting APP');
 
 $app->boot();
-
-$app->mount('/hello', new HelloWorldProvider());
 
 $app->run();
