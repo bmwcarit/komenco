@@ -29,8 +29,7 @@ class AboutControllerProvider implements ControllerProviderInterface{
 		$controllers = $app['controllers_factory'];
 
 		$app['about.template'] = 'about.twig';
-		$app['about.packages.file'] = __DIR__ . '/../../..' .
-										'/vendor/composer/installed.json';
+		$app['about.packages.file'] = './vendor/composer/installed.json';
 
 		$controllers->get('/', function (Application $app) {
 			$licenseFile = $app['about.packages.file'];
