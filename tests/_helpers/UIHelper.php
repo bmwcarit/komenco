@@ -43,7 +43,7 @@ class UIHelper extends \Codeception\Module {
 		/////////////////////////////////////
 	}
 
-	public function login($username, $password, $checkText = 'Home') {
+	public function login($username, $password, $checkText = 'About') {
 		$this->webDriver->amOnPage('/');
 		$this->webDriver->seeInCurrentUrl('login');
 		$this->webDriver->see('Welcome to ' . $this->app['config']['name']);
