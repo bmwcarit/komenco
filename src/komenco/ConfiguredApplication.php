@@ -114,7 +114,7 @@ class ConfiguredApplication extends Application {
 		}
 
 		if (isset($this['config']['jira']['private_key'])) {
-			$options['private_key'] = realpath($this->basedir .
+			$options['private_key'] = realpath($this->appdir .
 										$this['config']['jira']['private_key']);
 		}
 
