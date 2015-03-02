@@ -51,7 +51,9 @@
 		{% block container %}
 			{% include 'navigation.twig' %}
 			<div class="container">
-				<div id="alerts"></div>
+				<div id="alerts">
+					{% block alerts %}{% endblock %}
+				</div>
 				{% block content %}{% endblock %}
 			</div>
 			{% include 'footer.twig' %}
