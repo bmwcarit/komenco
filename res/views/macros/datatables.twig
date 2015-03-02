@@ -20,11 +20,15 @@
  DEALINGS IN THE SOFTWARE.
 #}
 
-{% macro init(id, options = null) %}
+{% macro init(id, options = null, plain = false) %}
 {% if options is not null %}
 	{% set options = options|json_encode() %}
 {% endif %}
+{% if not plain %}
 $(document).ready( function () {
+{% endif %}
 	$('#{{ id }}').DataTable({{ options|raw }});
+{% if not plain %}
 });
+{% endif %}
 {% endmacro %}
