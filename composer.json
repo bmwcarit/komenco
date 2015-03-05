@@ -31,7 +31,7 @@
 		"knplabs/knp-menu": "~2.0",
 		"oyejorge/less.php": "dev-master",
 		"igorw/config-service-provider": "1.2.2",
-		"codeception/codeception": "*",
+		"codeception/codeception": "~2.0.11",
 		"bmwcarit/silex-jira-oauth-provider": "dev-master",
 		"chobie/jira-api-restclient": "~2.0",
 		"datatables/datatables": "~1.10",
