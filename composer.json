@@ -9,7 +9,7 @@
 	],
 	"require": {
 		"silex/silex": ">=1.2",
-		"mheap/Silex-Assetic": "*",
+		"mheap/Silex-Assetic": "~1.0",
 		"twig/twig": ">=1.8,<2.0-dev",
 		"symfony/security": "~2.3,<2.7",
 		"symfony/validator": "~2.3,<2.7",
