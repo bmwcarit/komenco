@@ -36,9 +36,6 @@ apply_patch () {
 }
 
 # patch dependencies
-apply_patch 0001-Fix-overwriting-of-path-and-check_path-variables.patch \
-	icehero/silex-opauth
-
 apply_patch 0001-Handle-custom-sreg-attribute-namespaces.patch \
 	opauth/openid
 
