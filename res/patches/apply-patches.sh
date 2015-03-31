@@ -41,3 +41,6 @@ apply_patch 0001-Handle-custom-sreg-attribute-namespaces.patch \
 
 apply_patch 0001-Fix-opauth-parse-uri-function.patch \
 	opauth/opauth
+
+apply_patch 0001-Add-method-to-create-remote-links-for-an-issue.patch \
+	chobie/jira-api-restclient
