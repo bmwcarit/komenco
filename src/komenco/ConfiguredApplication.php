@@ -217,6 +217,9 @@ class ConfiguredApplication extends Application {
 						new FileAsset($this->appdir .
 								'/vendor/twitter/typeahead.js/dist/bloodhound.js'
 						),
+						new FileAsset($this->appdir .
+								'/vendor/bootstrap-select/bootstrap-select/dist/js/bootstrap-select.js'
+						),
 						new FileAsset($datatablesDir .
 								'/media/js/jquery.dataTables.js'
 						),
