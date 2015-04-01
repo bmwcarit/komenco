@@ -44,3 +44,6 @@ apply_patch 0001-Fix-opauth-parse-uri-function.patch \
 
 apply_patch 0001-Add-method-to-create-remote-links-for-an-issue.patch \
 	chobie/jira-api-restclient
+
+apply_patch 0001-Remove-inline-block-from-wrapper-element.patch \
+	twitter/typeahead.js
