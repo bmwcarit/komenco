@@ -23,3 +23,31 @@
 .navbar-brand-logo {
 	width: @navbar-brand-logo-width;
 }
+
+.tt-dropdown-menu {
+	width: @dropdown-menu-width;
+	margin: @dropdown-menu-margin;
+	padding: @dropdown-menu-padding;
+	background-color: @body-bg;
+	border: @dropdown-menu-border;
+	-webkit-border-radius: @border-radius-base;
+	-moz-border-radius: @border-radius-base;
+	border-radius: @border-radius-base;
+	-webkit-box-shadow: @dropdown-menu-shadow;
+	moz-box-shadow: @dropdown-menu-shadow;
+	box-shadow: @dropdown-menu-shadow;
+}
+
+.tt-suggestion, .tt-empty {
+	padding: @dropdown-menu-suggestion-padding;
+	line-height: @dropdown-menu-suggestion-line-height;
+}
+
+.tt-suggestion.tt-cursor {
+	color: @body-bg;
+	background-color: @link-color;
+}
+
+.tt-suggestion p, .tt-empty p {
+	margin: 0;
+}
