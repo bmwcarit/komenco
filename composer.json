@@ -44,7 +44,8 @@
 		"bmwcarit/silex-jira-oauth-provider": "dev-master",
 		"chobie/jira-api-restclient": "~2.0",
 		"datatables/datatables": "~1.10",
-		"eternicode/bootstrap-datepicker": "dev-master"
+		"eternicode/bootstrap-datepicker": "dev-master",
+		"twitter/typeahead.js": "~0.10.5"
 	},
 	"autoload": {
 		"psr-0": {

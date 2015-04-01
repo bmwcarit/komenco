@@ -211,6 +211,12 @@ class ConfiguredApplication extends Application {
 						new FileAsset($this->appdir .
 								'/vendor/eternicode/bootstrap-datepicker/js/bootstrap-datepicker.js'
 						),
+						new FileAsset($this->appdir .
+								'/vendor/twitter/typeahead.js/dist/typeahead.jquery.js'
+						),
+						new FileAsset($this->appdir .
+								'/vendor/twitter/typeahead.js/dist/bloodhound.js'
+						),
 						new FileAsset($datatablesDir .
 								'/media/js/jquery.dataTables.js'
 						),
