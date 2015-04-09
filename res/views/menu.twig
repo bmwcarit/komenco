@@ -30,3 +30,17 @@
 		{% endif %}
 	</a>
 {% endblock %}
+
+{% block item %}
+	{{ parent() }}
+
+	{% if item.displayed %}
+		{%- if item.attribute('divider_append') %}
+			{% if item.level == 1 %}
+				<li class="divider-vertical"></li>
+			{% else %}
+				<li class="divider"></li>
+			{% endif %}
+		{%- endif %}
+	{% endif %}
+{% endblock %}
