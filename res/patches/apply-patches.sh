@@ -47,3 +47,6 @@ apply_patch 0001-Add-method-to-create-remote-links-for-an-issue.patch \
 
 apply_patch 0001-Remove-inline-block-from-wrapper-element.patch \
 	twitter/typeahead.js
+
+apply_patch 0002-Do-not-overwrite-background-color-of-input-fields.patch \
+	twitter/typeahead.js

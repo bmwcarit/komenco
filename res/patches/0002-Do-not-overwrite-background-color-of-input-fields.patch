@@ -1,0 +1,26 @@
+From 2b6b08ba8075dd88c5eee4e57d5f94bfcc41aa4b Mon Sep 17 00:00:00 2001
+From: Timo Mueller <timo.mueller@bmw-carit.de>
+Date: Mon, 13 Apr 2015 11:18:00 +0200
+Subject: [PATCH 2/2] Do not overwrite background-color of input fields
+
+This will break look and feel input fields that have typeahead disabled
+but are disabled.
+---
+ dist/typeahead.jquery.js | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/dist/typeahead.jquery.js b/dist/typeahead.jquery.js
+index 5513a10..8b350da 100644
+--- a/dist/typeahead.jquery.js
++++ b/dist/typeahead.jquery.js
+@@ -152,7 +152,6 @@
+             input: {
+                 position: "relative",
+                 verticalAlign: "top",
+-                backgroundColor: "transparent"
+             },
+             inputWithNoHint: {
+                 position: "relative",
+-- 
+2.1.0
+
