@@ -1,36 +1,55 @@
-From 89c4499b81b0845c81ad65c3c64d94cd65e358a2 Mon Sep 17 00:00:00 2001
+From bb9d13084d94079611ec51067e23b151beacc2df Mon Sep 17 00:00:00 2001
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 Date: Tue, 31 Mar 2015 14:26:48 +0200
 Subject: [PATCH] Add method to create remote links for an issue
 
+This method allows the user to add remote links to an issue. Remote link
+point to systems other than JIRA itself, e.g. a web site or a wiki
+page.
+
+Creating links between JIRA issues accomplished by a different API and
+thus beyond the scope of this method.
 ---
- src/Jira/Api.php | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ src/Jira/Api.php | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
 diff --git a/src/Jira/Api.php b/src/Jira/Api.php
-index 2c642a5..8e4a655 100644
+index 2c642a5..507d724 100644
 --- a/src/Jira/Api.php
 +++ b/src/Jira/Api.php
-@@ -441,6 +441,25 @@ class Api
+@@ -441,6 +441,38 @@ class Api
      }
  
      /**
 +     * create a remote link
 +     *
 +     * @param $issue
-+     * @param array $data
++     * @param array $object
++     * @param string $relationship
++     * @param string globalid
++     * @param array $application
 +     * @return mixed
 +     */
-+    public function createRemotelink($issue, $data = array())
-+    {
-+        $object =
-+                array(
-+                    "object" => $data
-+                );
++    public function createRemotelink(
++            $issue,
++            $object = array(),
++            $relationship = null,
++            $globalid = null,
++            $application = null
++    ) {
++        $options = array(
++                        "globalid" => $globalid,
++                        "relationship" => $relationship,
++                        "object" => $object
++                    );
++
++        if (!is_null($application)) {
++            $options['application'] = $application;
++        }
 +
 +        return $this->api(self::REQUEST_POST,
 +                            "/rest/api/2/issue/" . $issue . "/remotelink",
-+                            $object, true);
++                            $options, true);
 +    }
 +
 +    /**
