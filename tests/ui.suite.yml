@@ -3,13 +3,13 @@ modules:
     enabled: [WebDriver, helpers\UIHelper]
     config:
         WebDriver:
-            browser: firefox
+            browser: chrome
             restart: false
             clear_cookies: true
             window_size: 1280x800
 env:
-    chrome:
+    firefox:
          modules:
             config:
                 WebDriver:
-                    browser: chrome
+                    browser: firefox
