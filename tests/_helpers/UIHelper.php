@@ -44,7 +44,7 @@ class UIHelper extends \Codeception\Module {
 	}
 
 	public function login($username, $password, $checkText = 'About') {
-		$this->webDriver->amOnPage('/');
+		$this->webDriver->amOnPage('/komenco');
 		$this->webDriver->seeInCurrentUrl('login');
 		$this->webDriver->see('Welcome to ' . $this->app['config']['name']);
 		$this->webDriver->click('Login');

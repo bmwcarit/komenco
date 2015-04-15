@@ -24,7 +24,7 @@
 $scenario->group('general');
 
 $I = new UIGuy($scenario);
-$I->amOnPage('/');
+$I->amOnPage('/komenco');
 $I->waitForText('Welcome to komenco');
 
 ?>
