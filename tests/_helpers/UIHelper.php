@@ -44,11 +44,7 @@ class UIHelper extends \Codeception\Module {
 	}
 
 	public function login($username, $password, $checkText = 'About') {
-		$webpath = '/' . $this->app['config']['name'];
-		if(array_key_exists('webpath', $this->app['config'])) {
-			$webpath = $this->app['config']['webpath'];
-		}
-		$this->webDriver->amOnPage($webpath);
+		$this->webDriver->amOnPage($this->app['config']['webpath']);
 		$this->webDriver->seeInCurrentUrl('login');
 		$this->webDriver->see('Welcome to ' . $this->app['config']['name']);
 		$this->webDriver->click('Login');
