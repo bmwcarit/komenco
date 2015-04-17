@@ -153,6 +153,13 @@ class ConfiguredApplication extends Application {
 									'config'));
 		}
 
+		# set the webpath to the default value if not specified
+		if(!array_key_exists('webpath', $this['config'])) {
+			$val = $this['config'];
+			$val['webpath'] = '/' . $this['config']['name'];
+			$this['config'] = $val;
+		}
+
 		# save openid server url in global variables
 		$GLOBALS['openid_server_url'] = $this['config']['openid_server_url'];
 	}
