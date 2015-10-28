@@ -41,7 +41,7 @@
 		"oyejorge/less.php": "dev-master",
 		"igorw/config-service-provider": "1.2.2",
 		"codeception/codeception": "~2.0",
-		"bmwcarit/silex-jira-oauth-provider": "dev-master",
+		"bmwcarit/silex-jira-oauth-provider": "1.0.1",
 		"chobie/jira-api-restclient": "~2.0",
 		"datatables/datatables": "~1.10",
 		"eternicode/bootstrap-datepicker": "dev-master",
