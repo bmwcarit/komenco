@@ -1,4 +1,4 @@
-From bb9d13084d94079611ec51067e23b151beacc2df Mon Sep 17 00:00:00 2001
+From c097585c49bb41f392aefec18c5d52152610ff09 Mon Sep 17 00:00:00 2001
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 Date: Tue, 31 Mar 2015 14:26:48 +0200
 Subject: [PATCH] Add method to create remote links for an issue
@@ -17,7 +17,9 @@ diff --git a/src/Jira/Api.php b/src/Jira/Api.php
 index 2c642a5..507d724 100644
 --- a/src/Jira/Api.php
 +++ b/src/Jira/Api.php
-@@ -441,6 +441,38 @@ class Api
+@@ -439,10 +439,42 @@ class Api
+         );
+         return $this->api(self::REQUEST_POST, "/rest/api/2/issue/" . $issue . "/attachments", $options, false, true);
      }
  
      /**
@@ -56,6 +58,8 @@ index 2c642a5..507d724 100644
       * send request to specified host
       *
       * @param string $method
+      * @param $url
+      * @param array $data
 -- 
-2.1.0
+2.4.3
 
