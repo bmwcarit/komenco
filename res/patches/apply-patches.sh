@@ -50,3 +50,6 @@ apply_patch 0001-Remove-inline-block-from-wrapper-element.patch \
 
 apply_patch 0002-Do-not-overwrite-background-color-of-input-fields.patch \
 	twitter/typeahead.js
+
+apply_patch 0001-Patch-oauth-subscriber-to-version-55c001f.patch \
+	guzzlehttp/oauth-subscriber
