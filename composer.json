@@ -30,7 +30,7 @@
 		"icehero/silex-opauth": "dev-master",
 		"opauth/openid": "dev-master",
 		"monolog/monolog": ">=1.0.0",
-		"guzzlehttp/guzzle": "~6.0",
+		"guzzlehttp/guzzle": "~5.1",
 		"propel/propel": "~2.0@dev",
 		"propel/propel-service-provider": "2.x",
 		"twbs/bootstrap": "~3.2",
