@@ -40,13 +40,12 @@
 		"knplabs/knp-menu": "~2.0",
 		"oyejorge/less.php": "~1.7.0.9",
 		"igorw/config-service-provider": "1.2.2",
-		"codeception/codeception": "~2.0",
+		"codeception/codeception": "~2.0.16",
 		"bmwcarit/silex-jira-oauth-provider": "1.0.1",
 		"chobie/jira-api-restclient": "~2.0",
 		"datatables/datatables": "~1.10",
 		"eternicode/bootstrap-datepicker": "~1.5.0",
-		"twitter/typeahead.js": "~0.10.5",
-		"facebook/webdriver": "~1.0"
+		"twitter/typeahead.js": "~0.10.5"
 	},
 	"autoload": {
 		"psr-0": {
