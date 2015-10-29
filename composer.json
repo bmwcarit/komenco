@@ -38,7 +38,7 @@
 		"nostalgiaz/bootstrap-switch": "~3.3.2",
 		"components/jquery": "~2.1",
 		"knplabs/knp-menu": "~2.0",
-		"oyejorge/less.php": "dev-master",
+		"oyejorge/less.php": "~1.7.0.9",
 		"igorw/config-service-provider": "1.2.2",
 		"codeception/codeception": "~2.0",
 		"bmwcarit/silex-jira-oauth-provider": "1.0.1",
