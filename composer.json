@@ -28,7 +28,7 @@
 		"symfony/twig-bridge": "~2.3,<2.7",
 		"symfony/validator": "~2.3,<2.7",
 		"icehero/silex-opauth": "dev-master",
-		"opauth/openid": "dev-master",
+		"opauth/openid": "0.1.0",
 		"monolog/monolog": ">=1.0.0",
 		"guzzlehttp/guzzle": "~5.1",
 		"propel/propel": "~2.0@dev",
