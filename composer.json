@@ -58,5 +58,8 @@
 			"extensions\\": "tests/_extensions",
 			"helpers\\": "tests/_helpers"
 		}
+	},
+	"config": {
+		"component-dir": "vendor/vendor-components"
 	}
 }
