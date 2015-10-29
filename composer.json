@@ -35,7 +35,7 @@
 		"propel/propel-service-provider": "2.x",
 		"twbs/bootstrap": "~3.2",
 		"bootstrap-select/bootstrap-select": "~1.7.5",
-		"nostalgiaz/bootstrap-switch": "dev-master",
+		"nostalgiaz/bootstrap-switch": "~3.3.2",
 		"components/jquery": "~2.1",
 		"knplabs/knp-menu": "~2.0",
 		"oyejorge/less.php": "dev-master",
