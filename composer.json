@@ -34,7 +34,7 @@
 		"propel/propel": "~2.0@dev",
 		"propel/propel-service-provider": "2.x",
 		"twbs/bootstrap": "~3.2",
-		"bootstrap-select/bootstrap-select": "dev-master",
+		"bootstrap-select/bootstrap-select": "~1.7.5",
 		"nostalgiaz/bootstrap-switch": "dev-master",
 		"components/jquery": "~2.1",
 		"knplabs/knp-menu": "~2.0",
