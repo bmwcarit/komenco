@@ -2,7 +2,7 @@
 	"name": "bmwcarit/komenco",
 	"description": "komenco",
 	"keywords": ["komenco", "beginning"],
-	"license": "proprietary",
+	"license": "MIT",
 	"minimum-stability": "dev",
 	"bin": [
 		"res/patches/apply-patches.sh"
