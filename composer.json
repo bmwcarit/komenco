@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"minimum-stability": "dev",
 	"bin": [
-		"res/patches/apply-patches.sh"
+		"res/patches/apply-patches.sh",
+		"res/scripts/create-version.sh"
 	],
 	"require": {
 		"silex/silex": ">=1.2",
@@ -60,5 +61,10 @@
 	},
 	"config": {
 		"component-dir": "vendor/vendor-components"
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"./res/scripts/create-version.sh"
+		]
 	}
 }

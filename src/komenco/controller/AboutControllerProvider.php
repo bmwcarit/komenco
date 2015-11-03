@@ -30,11 +30,17 @@ class AboutControllerProvider implements ControllerProviderInterface{
 
 		$app['about.template'] = 'about.twig';
 		$app['about.packages.file'] = './vendor/composer/installed.json';
+		$app['about.composer.file'] = './composer.json';
+		$app['about.version.file'] = './res-gen/version.json';
 
 		$controllers->get('/', function (Application $app) {
-			$data = $this->loadJsonData($app, $app['about.packages.file']);
+			$packages = $this->loadJsonData($app, $app['about.packages.file']);
+			$composer = $this->loadJsonData($app, $app['about.composer.file']);
+			$version = $this->loadJsonData($app, $app['about.version.file']);
 			return $app->render($app['about.template'],
-								array('packages' => $data));
+								array('packages' => $packages,
+									'composer' => $composer,
+									'version' => $version));
 		})->bind('about');
 
 		return $controllers;

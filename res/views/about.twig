@@ -25,6 +25,30 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
+	<h1>About</h1>
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab">
+			<h4 class="panel-title">
+				<div class="row">
+					<div class="col-md-8">
+						{{ composer.name }} ({{ version.version }})
+					</div>
+					<div class="col-md-4">
+						<p class="text-right">
+							{{ composer.license|default("Unknown") }}
+						</p>
+					</div>
+				</div>
+			</h4>
+		</div>
+		<div class="panel-body">
+			<dl class="dl-horizontal">
+				<dt>Name:</dt><dd>{{ composer.name }}</dd>
+				<dt>Version:</dt><dd>{{ version.version }}</dd>
+				<dt>Description:</dt><dd>{{ composer.description }}</dd>
+			</dl>
+		</div>
+	</div>
 	<h1>Built with</h1>
 	{% include 'licenses.twig' with { 'packages': packages } %}
 {% endblock content%}
