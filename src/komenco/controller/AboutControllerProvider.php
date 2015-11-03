@@ -32,20 +32,23 @@ class AboutControllerProvider implements ControllerProviderInterface{
 		$app['about.packages.file'] = './vendor/composer/installed.json';
 
 		$controllers->get('/', function (Application $app) {
-			$licenseFile = $app['about.packages.file'];
-			$data = array();
-			if (file_exists($licenseFile)) {
-				$file = file_get_contents($licenseFile);
-				$data = json_decode($file);
-			} else {
-				$app->log('Could not find licenses file at ' .
-							$app['about.packages.file']);
-			}
-
+			$data = $this->loadJsonData($app, $app['about.packages.file']);
 			return $app->render($app['about.template'],
 								array('packages' => $data));
 		})->bind('about');
 
 		return $controllers;
+	}
+
+	private function loadJsonData(Application $app, $fileName) {
+		$data = array();
+		if (file_exists($fileName)) {
+			$file = file_get_contents($fileName);
+			$data = json_decode($file);
+		} else {
+			$app->log('Could not find file at ' . $fileName);
+		}
+
+		return $data;
 	}
 }
