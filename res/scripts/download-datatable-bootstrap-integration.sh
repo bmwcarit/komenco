@@ -20,36 +20,10 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-VENDOR_FOLDER=`readlink -f $1`
-PATCHDIR=`readlink -f $(dirname $0)`
+if [ ! -d "res-gen" ]
+then
+	mkdir res-gen
+fi
 
-echo "===================================="
-echo "Patch KOMENCO dependencies"
-echo ""
-echo "Vendor folder: $VENDOR_FOLDER"
-echo "Patch dir: $PATCHDIR"
-echo ""
-
-apply_patch () {
-	patch -i $PATCHDIR/$1 \
-		-d $VENDOR_FOLDER/$2 -p1 -N
-}
-
-# patch dependencies
-apply_patch 0001-Handle-custom-sreg-attribute-namespaces.patch \
-	opauth/openid
-
-apply_patch 0001-Fix-opauth-parse-uri-function.patch \
-	opauth/opauth
-
-apply_patch 0001-Add-method-to-create-remote-links-for-an-issue.patch \
-	chobie/jira-api-restclient
-
-apply_patch 0001-Remove-inline-block-from-wrapper-element.patch \
-	twitter/typeahead.js
-
-apply_patch 0002-Do-not-overwrite-background-color-of-input-fields.patch \
-	twitter/typeahead.js
-
-apply_patch 0001-Patch-oauth-subscriber-to-version-55c001f.patch \
-	guzzlehttp/oauth-subscriber
+curl "https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js" \
+	-o res-gen/dataTables.bootstrap.js

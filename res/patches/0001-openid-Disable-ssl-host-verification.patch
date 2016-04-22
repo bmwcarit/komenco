@@ -1,0 +1,23 @@
+From 94464e06e16ca7e37323cad2b4acdd66a87b1116 Mon Sep 17 00:00:00 2001
+From: Michael Knapp <michael.knapp@bmw-carit.de>
+Date: Mon, 25 Apr 2016 15:36:01 +0200
+Subject: [PATCH] openid: Disable ssl host verification
+
+---
+ Vendor/lightopenid/openid.php | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Vendor/lightopenid/openid.php b/Vendor/lightopenid/openid.php
+index 55cabb6..e1bda41 100644
+--- a/Vendor/lightopenid/openid.php
++++ b/Vendor/lightopenid/openid.php
+@@ -161,6 +161,7 @@ class LightOpenID
+         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+         curl_setopt($curl, CURLOPT_HEADER, false);
+         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
++        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/xrds+xml, */*'));
+
+--
+2.5.5

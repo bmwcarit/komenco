@@ -64,7 +64,8 @@
 	},
 	"scripts": {
 		"post-autoload-dump": [
-			"./res/scripts/create-version.sh"
+			"./res/scripts/create-version.sh",
+			"./res/scripts/download-datatable-bootstrap-integration.sh"
 		]
 	}
 }

@@ -166,8 +166,6 @@ class ConfiguredApplication extends Application {
 
 	private function registerAssetic() {
 		$app = $this;
-		$datatablesPlugInsCDN =
-				"https://cdn.datatables.net/plug-ins/f2c75b7247b";
 
 		$app->register(new AsseticServiceProvider());
 		$app['assetic.path_to_web'] = $this->appdir . '/res-gen/web';
@@ -188,8 +186,7 @@ class ConfiguredApplication extends Application {
 		);
 
 		$app['assetic.asset_manager'] = $app->share(
-			$app->extend('assetic.asset_manager', function($am, $app)
-					use ($datatablesPlugInsCDN) {
+			$app->extend('assetic.asset_manager', function($am, $app) {
 				$am->set('styles', new AssetCache(
 					new AssetCollection(
 						array(
@@ -230,8 +227,8 @@ class ConfiguredApplication extends Application {
 						new FileAsset($datatablesDir .
 								'/media/js/jquery.dataTables.js'
 						),
-						new HttpAsset($datatablesPlugInsCDN .
-								'/integration/bootstrap/3/dataTables.bootstrap.js'
+						new FileAsset($this->appdir .
+								'/res-gen/dataTables.bootstrap.js'
 						)
 					)),
 					new FilesystemCache($app['assetic.options']['formulae_cache_dir'])
