@@ -27,3 +27,6 @@ fi
 
 curl "https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js" \
 	-o res-gen/dataTables.bootstrap.js
+
+curl "https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css" \
+	-o res-gen/dataTables.bootstrap.css
