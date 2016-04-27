@@ -32,7 +32,7 @@ echo ""
 
 apply_patch () {
 	patch -i $PATCHDIR/$1 \
-		-d $VENDOR_FOLDER/$2 -p1 -N
+		-d $VENDOR_FOLDER/$2 -p1 -N || true
 }
 
 # patch dependencies
